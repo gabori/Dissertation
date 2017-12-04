@@ -18,3 +18,164 @@ profil: általános webshop ... teljesen egyedi, éttermekre szabott.
 feladatkezelés: pénztárgép szoftver is-e egyben? Mennyire
 
 Kb. 10 leginkább elterjedt program.
+
+% \section{Éttermi nyilvántartás}
+
+Az éttermi nyilvántartás egy roppantul összetett problémakör. Az ilyen szoftverek tervezésénél figyelembe kell venni, hogy nincs két egyforma vendéglátó egység, tehát a szoftvert mindig az adott vállalkozáshoz kell igazítani. Nyilván kell tartani a rendeléseket, a raktárkészletet, a felhasználókat, törzsvendégek kezelését. A szoftverrel szemben elvárás, hogy megkönnyítse a szoftverrel dolgozók munkáját, átláthatóvá tegye az üzletvezetők számára az üzlet menetét és az ellenőrzést. Szintén elvárás, hogy könnyen kezelhető és rugalmasan bővíthető legyen.
+
+\subsection{Rendelésnyilvántartás}
+
+Rendelések esetén számos adatot nyilván kell tartani. Fontos, hogy ki rendelt, mikor, melyik étteremből, mit, mennyit és mivel fizetett. Menedzselni kell futárszolgálatot, betartani a kiszállítási időt. Biztosítani kell a vásárlók számára pontos leírást az ételekről, választási lehetőséget a fizetési lehetőségek között, estleg vegyes fizetési lehetőségeket egy számlán belül.
+
+\subsection{Készletnyilvántartás}
+
+Vannak éttermi nyilvántartó szoftverek, melyek lehetőséget biztosítanak teljes körű raktárkészlet kezelésre, egy vagy akár több raktárral is. Ebbe beletartozik az alapanyagok bevételezése, selejtezés, abban az esetben, ha több raktár is van, akkor raktárok közötti átvételezés.
+Ebbe a problémakörbe tartozhat még a menü összeállítása, előrendelések kezelése, a termékekhez tartozó receptúrák kezelése, tehát nyilvántartása és módosítása.
+
+\subsection{Törzsvendégek kezelése}
+
+A vásárlók teljeskörű nyilvántartása az ilyen típusú szoftverek esetén alap elvárás. A rendszeresen vásárló felhasználók számára nyújtani kell valamilyen fajta plusz szolgáltatást, amivel meg lehet hálálni a hűségüket, és el lehet azt érni, hogy továbbra is ezt a szoftvert használják. Erre a problémára nyújtanak megoldást a különböző törzsvásárlói kedvezmények.
+
+\subsection{Ellenőrzés}
+
+Egy sikeres vállalkozáshoz szükség van a folyamatos ellenőrzésre, az üzletvezetőnek mindig át kell látnia az üzlet menetét. Az ilyen típusú nyilvántartó rendszerek egy része lehetőséget biztosít a termékek szerinti fogyások kimutatására, ez egy nagyon fontos statisztika, amely megmutatja, hogy egy adott időszakban melyik termék volt a legnépszerűbb, tehát fogyott belőle a legtöbb, illetve, hogy melyikből fogyott a legkevesebb. Biztosítják az alapanyagok készletszintjének figyelését.
+
+Fontos statisztikákat, grafikonokat állítanak elő egy adott időszakra, melyek nélkülözhetetlenek a további üzleti lépések meghozatalához, a sikeres üzleti élethez. Kimutatások a pillanatnyi alapanyag készletről, ezeknek lekérdezése, a lekérdezések és kimutatások exportálása.
+
+\subsection{Elterjedt megoldások}
+
+Az internetet böngészve számos étterem nyilvántartó szoftvert lehet találni. Vannak köztük online webalkalmazások, és letölthető desktop alkalmazások is. Összeszedtem a már létező alternatívák közül a Magyarországon legelterjedtebbeket, és egy táblázatban néhány szempont alapján összehasonlítottam őket (\ref{tab:features}. táblázat).
+
+\begin{table}
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+Program neve & felhasználókezelés & profil & könyvelés & feladatkezelés & készletnyilvántartás \\
+\hline
+eSystem & van & általános webshop & van & igen & igen \\
+\hline
+R-keeper & nincs & teljesen egyedi & nincs & igen & igen \\
+\hline
+MultiStore & nincs & teljesen egyedi & van & igen & igen \\
+\hline
+Stand-Mágus & van & teljesen egyedi & van & igen & igen \\
+\hline
+\end{tabular}
+\caption{Elterjedt funkciók}
+\label{tab:features}
+\end{table}
+
+A táblázat első oszlopában a szoftver neve szerepel. A második oszlopban a felhasználókezelés, ami azt takarja, hogy a szoftver funkció között van e vendég nyilvántartás, tehát, hogy lehet e regisztrálni a vendégeket. A harmadik oszlopban a szoftver profilját, arculatát jellemeztem. A negyedik oszlopban azt vizsgáltam, hogy van e integrált könyvelés funkció az alkalmazásban. Az 5. oszlopban feladatkezelés alatt azt értettem, hogy a pénztárgép funkcióit is a szoftver látja e el. A hatodik azaz utolsó oszlopban a szoftver raktár készlet kezelését vizsgáltam.
+
+Az én alkalmazásom a vásárlók teljes körű nyilvántartására, rendelések nyilvántartására és az ezekből alkotott kimutatásokra, statisztikákra fog összpontosulni. Az alkalmazásom célja, a házhoz szállítást nyújtó éttermek összegyűjtése, az üzletvezetők feladatának, éttermek menedzselésének megkönnyítése, és a rendelők számára a minél egyszerűbb ételrendelés biztosítása. Az hasonló célú és felépítésű szoftvereket online ételrendelési portálnak szokták nevezni.
+
+A magyar piacon jelenleg három online ételrendelési portál óriás van, a NetPincér, a Pizza.hu és a Falatozz.hu. Ezek a portálok közvetítő szerepet játszanak a megrendelő és a kiszállítást lebonyolító étterem között. Az éttermeknek ez egy nagyon jó marketing fogás, segít nekik az ügyfélkör kibővítésében, a megrendelőknek, meg leegyszerűsítik az online ételrendelést, azzal, hogy egy oldalon megtalálják a környéken lévő összes vendéglátó egység kínálatát.
+
+Az alkalmazásom abban különbözik ezektől az online étrendelési portáloktól, hogy míg ezek a portálok úgymond csak közvetítő szerepet vállalnak, nem feltétlenül tartják nyilván az adatokat, a partner cégek egyébként is rendelkeznek egy saját étterem nyilvántartói rendszerrel és általában webes rendelő felülettel is. Addig az általam készített alkalmazás biztosítja a rendelésnyilvántartást, a vásárlónyilvántartást és a szerzett adatokból olyan statisztikákat, kimutatásokat állít elő, melyek elengedhetetlenek egy sikeres vállalkozáshoz.
+
+Ez nem feltétlen jó így fejezet címnek, pontosabban ezen a témán belül több fejezet is lehet, attól függően, hogy majd mivel és hogy sikerül elkészülni.
+
+Itt kb. olyasmire kell gondolni, mint
+- rendelések nyilvántartása,
+- promóciók, törzsvásárlói kedvezmények megvalósítása a rendszerben,
+- nyersanyagok nyilvántartása,
+- rendelési statisztikák, elemzés, megjelenítés,
+- ...
+
+Annyi biztos, hogy a címnek megfelelően a rendeléseket majd nyilván kell tartani. A többi ahhoz kapcsolható funkció, de csak akkor célszerű vele foglalkozni, ha az alapfunkciók már megvannak.
+
+A tervezéséről szóló dolgokat az alkalmazás felépítésénél is el lehet kezdeni, de ott még inkább csak az interfészekre, az API jellegére, konvenciókra, illesztési módokra vonatkozóan.
+
+Magában az implementációba annyira kell csak majd belemenni az alapfunkciók bemutatásánál, hogy a kiemelt kódpéldák alapján át lehessen tekinteni a rendszer egészét, és a leírás alapján aki akarja hellyel-közzel tuda is reprodukálni a rendszert.
+
+\section{Az alkalmazás alapfunkciói}
+
+Az alkalmazásom lényegében éttermek és rendelések adatainak nyilvántartására fog szolgálni. Ebben a fejezetben az alap funkcionalitásokat fogom tárgyalni.
+
+\section{Bejelentkezés/ regisztráció}
+
+Az alkalmazásom egyik alap funkcionalitása a felhasználókezelés lesz. Csak regisztrált felhasználók számára lesznek elérhetőek a szolgáltatások, a kezdőlapon lesz lehetőség a bejelentkezésre, vagy regisztrációra. Alapvetően két felhasználói csoportot lehet majd megkülönböztetni, a vásárlókat és az étterem tulajdonosokat. A két csoport eltérő jogosultsági körrel fog rendelkezni, és más-más szolgáltatások lesznek számukra elérhetőek.
+
+\section{Vásárlók funkciói}
+
+\subsection{Böngészés az éttermek között}
+
+A vásárlóknak lehetőségük lesz az adatbázisban szereplő éttermek kínálatai között böngészni. Szűrési feltételek megadásával szűkíthetik a kilistázott éttermek listáját, hogy megtalálják a számukra legszimpatikusabbat.
+A kívánt étterem kiválasztása után a server kilistázza az adott étterem által kínált termékeket. A termékek között is lesz lehetőség szűrésre például típus szerint. A megrendelendő termékeket a vásárló belehelyezheti a kosárba. A kosár tartalma egy angular változóban lesz letárolva. A kosár tartalma is módosítható lesz.
+
+\subsection{Rendelés}
+
+A rendelés véglegesítése előtt a vásárlónak lehetősége lesz kiválasztani a kívánt fizetési módot. Rendelés során a kosár tartalma elküldésre kerül a servernek. A server létrehozza a szükséges order és \texttt{order\_meals} objektumokat, majd letárolja őket az adatbázisban. A rendelésről visszajelzést fog kapni a vásárló és az étterem tulajdonosa is. A rendelések adatait később statisztikák, kimutatások készítésénél lehet majd felhasználni.
+
+\subsection{Felhasználói adatok}
+
+A felhasználók számára lesz egy szolgáltatás, amely kilistázza az adott account adatait.
+
+\subsection{Jelszó módosítás}
+
+A felhasználói adatok kilistázása mellett lehetőség lesz a jelszó módosításra is. Ehhez egy űrlap kitöltésére lesz szükség, ahol meg kell majd adni az aktuális érvényben lévő jelszó mellett az új jelszót is. Az megadott adatokat server oldalon fogom vizsgálni, ha megadott jelszó megegyezik a felhasználói fiók tényleges jelszavával, akkor a server elvégzi a szükséges adatbázis módosításokat.
+
+\subsection{Törzsvásárlói kedvezmények}
+
+A vásárlók hűségének honorálása miatt, minden leadott rendelés után jutalompontokat írunk jóvá a rendelést leadó felhasználó javára. A pontokat fizetéskor lehet majd beváltani, ilyenkor a pontok összege levonásra fog kerülni a rendelés összegéből.
+
+\section{Étterem tulajdonosi funkciók}
+
+Az étterem tulajdonosoknak nyújtott szolgáltatások az éttermeik menedzselése, új éttermek felvitele a rendszerbe, és az éttermeikkel kapcsolatos statisztikák kimutatása.
+
+\subsection{Éttermeim}
+
+Az étterem tulajdonos számára adott lesz egy funkció, melynek segítségével ki tudják majd listázni a tulajdonukban lévő éttermeket. A felhasználó minden éttermének megtudja majd nézni az termék kínáltát, az étterembe leadott rendeléseket és tudja majd módosítani az adott étterem adatait.
+
+\subsection{Termékek módosítása}
+
+A felhasználó minden egyes éttermének meg tudja nézni a termékkínálatát. A termékekre lesz szűrési lehetőség a köztük történő navigáció megkönnyítése érdekében. Az egyes termékeket lehet majd törölni és módosítani, illetve lesz lehetőség újabb termékek felvitelére az adatbázisba.
+A termékek módosítása egy űrlap kitöltésével fog kezdődni, ahol meg kell majd adni a módosítandó adatokat. Ezeket az adatokat a server fogja megkapni, feldolgozni, és végrehajtani az adatbázisban.
+
+\subsection{Termékek törlése}
+
+A törlendő termékre a felhasználó meghívhatja a termék törlése funkciót, ekkor a termék letárolódik egy angular változóba és elküldésre kerül a servernek. A server feldolgozza a kapott adatokat, az adatbázisból törli a megfelelő azonosítójú terméket, majd véglegesíti az adatbázis módosításokat.
+
+\subsection{Termék felvitel}
+
+A termék felvitel funkció meghívásakor a felhasználó egy űrlapot fog látni. Miután kitöltötte a megfelelő mezőket, a felvitt adatok elküldésre kerülnek. A server a kapott adatokat feldolgozza, és létrehoz egy meal objektumot az adatok felhasználásával. Ezt az objektumot felviszi az adatbázisba, majd véglegesíti az adatbázis módosításokat.
+
+\subsection{Étterem létrehozása}
+
+A felhasználó éttermeket is hozzátud adni az adatbázishoz. Egy étterem felviteléhez mindössze egy űrlapot kell kitölteni a megfelelő adatokkal. Kitöltés után az adatokat az angular továbbítja a servernek. A server a kapott adatokból létrehoz egy új restaurant objektumot, és menti az adatbázisba.
+
+\subsection{Étterem módosítsa}
+
+Egy étterem módosításához egy űrlap kitöltésére lesz szüksége, amire a módosítandó adatokat kell felvinni. Az űrlap elküldése után az angular továbbítja az adatokat a servernek, ami feldolgozza és véglegesíti a módosításokat.
+
+\subsection{Rendelések}
+
+A felhasználó mindegyik éttermére megtudja majd hívni a rendelések funkciót, amely kilistázza az adott étteremben leadott rendeléseket.
+
+\subsection{Statisztikák}
+
+Az étterem tulajdonosok számára lesz egy szolgáltatás, amely statisztikákat, grafikonokat állít elő egy adott időszakra, melyek nélkülözhetetlenek a további üzleti lépések meghozatalához, a sikeres üzleti élethez. A felhasználók megnézhetik például hogy melyik ételtípusból rendelik a legtöbbet, a különböző fizetési módok gyakoriságát, vagy például a felhasználók rendelésszámának eloszlását.
+
+\section{Statisztikai jellegű elemzések}
+
+Felhasználói szokások elemzése
+
+Rendelések száma (idő függvényében)
+Rendelések összege
+Fizetési módok gyakorisága
+Ételek típusai
+Felhasználók rendelésszámának eloszlása
+Nap melyik szakában történt a rendelés (ehhez is eloszlás)
+
+Felhasználók osztályozása/klaszterezése
+- osztályozásnál eleve tudjuk, hogy mi a csoport jellemzője.
+- klaszterezésnél adottak a mintáink, szeretnénk megtudni, hogy milyen csoportok vannak benne.
+
+\section{Ajánlórendszer}
+
+Piaci kosár elemzés
+
+Amit meg kellene nézni:
+- Milyen termékhez milyen másik terméket érdemes ajánlani?
+- Mikor célszerű az akciókat meghírdetni és milyen termékekre vonatkozóan? (Például hónap elején-végén, karácsonykor, szezonalitást vizsgálni)
+- Felhasználónként mikor lehet külön üzenetet küldeni egy-egy akcióról? (Észrevétel: Nem érdemes túl sok akciót küldeni gyakran, mert spam lesz belőle.)
