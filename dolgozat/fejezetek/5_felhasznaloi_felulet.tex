@@ -177,6 +177,108 @@ A profilom funkció az étterem tulajdonosok szempontjából is ugyanaz, mint a 
 
 A jelszó módosítás is ugyanúgy működik, mint a vásárlóknál. A „Jelszó módosítása” gombra kattintva megjelenik egy űrlap. Meg kell adni a jelenlegi jelszót, majd az új jelszót és végül meg kell erősíteni az új jelszót. A „Mentés” gombra kattintva megtörténik a jelszó cserélő funkció meghívása. Amennyibben a jelenlegi jelszó helyes, az új jelszó megfelel a kritériumoknak és megegyezik a megerősített jelszóval, megtörténik a jelszó módosítása.
 
-\section{Megvalósítás AngularJS segítségével}
+\section{Felhasználói felület megvalósítása AngularJS segítségével}
 
-...
+A felhasználói felületet AngularJs segítségével valósítottam meg. Az app.js fájl tartalmazza az angular kódot. Az alkalmazásom egy single-page application, ami azt jelenti, hogy a weblap folyamatosan kis mennyiségű adatot cserél a szerverrel, tehát nem teljes HTML oldalak töltődnek le a szerverről, hanem egy adott oldal tartalma dinamikusan változik az alkalmazás használata során. A felhasználói felület különböző nézetekből épül fel. A nézetek HTML fájlokban tárolt HTML-kódrészletek. Egy nézet létrehozásához implementálni kell egy kontrollert és definiálni egy állapotot. A kontrollerek feladata a szerverrel való kommunikáció, és az adatok megjelenítése a nézeteken. A \texttt{\$stateProvider} modul kezeli az állapotokat, definiálásuk a .state() metódussal történik. Egy állapot definiálásakor meg kell adni a nevét, az URL-t amire aktiválódik, a HTML fájl elérési útját, amit be kell töltenie, tehát a nézetet, és azt, hogy melyik kontrollert használja. Az \texttt{\$urlRouterProvider} modul \texttt{.otherwise()} metódusa segítségével létrehoztam egy olyan állapotot, ami akkor aktiválódik, ha a hivatkozott URL egyik meglévő állapotra se illeszkedik. Ilyenkor egy hiba üzenetet tartalmazó nézet töltődik be.
+
+Az angular fájlban definiálok egy \texttt{.run} blokkot is, amelyben a sütik értékeit frissítem, és biztosítom, hogy amíg a felhasználó nem jelentkezett be, csak a bejelentkező, és regisztráló felületet érhesse el.
+
+A fejezet további részében az állapotokat és kontrollereket fogom részletezni.
+
+\subsection{Állapotok}
+
+Ahogy már korábban leírtam egy állapot definiálásakor meg kell adni a nevét, az URL-t amire aktiválódik, a HTML fájl elérési útját, amit be kell töltenie, tehát a nézetet, és azt, hogy melyik kontrollert használja. A következő képpel demonstrálom ezt:
+
+\begin{cpp}
+.state("/", {
+    url: "",
+    templateUrl: "/static/partials/home.html",
+    controller: "loginController"
+})
+\end{cpp}
+
+A fenti állapot a \texttt{/static/partials/home.html} nézetet tölti be a \texttt{loginController} segítségével, ami a bejelentkező felületet. A \texttt{loginController} a felhasználók be és ki jelentkezését, illetve az autentikációt valósítja meg. Az autentikáció megvalósításához létrehoztam egy \textit{service}-t, az \texttt{AuthenticationService}-t. Ezt a \texttt{service.js} fájl valósítja meg. Az hitelesítése folyamata során a kontroller meghívja az \texttt{AuthenticationService} login metódusát, és paraméterként átadja neki a felhasználó által megadott felhasználónevet és jelszót. A service a kapott adatokat elküldi a szervernek, és várja a választ. A szerver elvégzi a szükséges ellenőrzéseket, lekérdezéseket, token generálást, és választ küld a \textit{service}-nek. A \textit{service} a kapott választ továbbítja a kontroller felé. A kontroller megvizsgálja a választ, ha nem 200-as státuszkódot kap, akkor visszatér egy hibaüzenettel viszont, ha a 200-as státuszkódot kapott a hitelesítés sikeres volt, meghívja az \texttt{AuthenticationService} \texttt{SetCredentials} metódusát és át adja neki a felhasználó nevét, jelszavát és típusát, majd betölti a \texttt{/startpage} nézetet. A service \texttt{SetCredentials} függvénye egy \texttt{\$rootScope} változónak dictionary-ként értékül adja a kapott adatokat és a szerver által generált tokent, majd értékül adja a változót egy sütinek.
+
+Kijelentkezés esetén a kontroller az \texttt{AuthenticationService} \texttt{ClearCredentials()} metódusát hívja meg, ami törli a bejelentkezéskor létrehozott sütit.
+
+\bigskip
+
+\noindent \texttt{/startpage}
+
+A \texttt{/startpage} URL-re hivatkozva a \texttt{/static/partials/startpage.html} nézet töltődik be, ami a webalkalmazás nyitóoldala.
+
+\bigskip
+
+\noindent \texttt{/registration}
+
+A \texttt{/registration} URL-re való hivatkozás a \texttt{/static/partials/registration.html} nézetet tölti be a userController segítségével. A kontroller betölti a regisztrációs felületet, a felhasználó felviszi az adatait, amiket a kontroller továbbít a szerver felé.
+
+\bigskip
+
+\noindent \texttt{/restaurant}
+
+A \texttt{/restaurant} URL-re hivatkozva a \texttt{restaurantController} betölti a \texttt{/static/partials/restaurant.html} nézetet. A kontroller lekéri a szervertől az éttermeket. A megjelenített táblázatban biztosítja a városok szerinti szűrést.
+
+\bigskip
+
+\noindent \texttt{/myRestaurant}
+
+A \texttt{myRestaurantController} a \texttt{/static/partials/my\_restaurants.html} nézetett tölti be a \texttt{/myRestaurant/:username} URL hivatkozás után. A kontroller lekéri a szervertől a paraméterként átadott azonosítóval rendelkező felhasználó éttermeit.
+
+\bigskip
+
+\noindent \texttt{/list-meals}
+
+A \texttt{/list-meals/:restaurant\_id} URL-re hivatkozva a \texttt{mealsController} betölti a \texttt{/static/partials/list\_meals.html} nézetet. A kontroller lekéri a szervertől a paraméterként kapott étterem által kínált ételeket, az étterem által kínált ételek típusait és a fizetési módokat. A táblázatban megjelenített ételek között a kontroller szűrési lehetőséget biztosít a lekért típusok alapján. A kontroller létrehoz egy \texttt{\$rootScope} kosarat, amihez az \texttt{addToCart()} funkció meghívásával lehet ételeket hozzáadni. Az \texttt{addToCart()} kap egy ételt paraméterként, amit beletesz a kosár listába, majd a kosarat beleteszi egy sütibe. A \texttt{removeFromCart()} függvénnyel lehet a kosárból törölni, először a kosár listából törli a paraméterként kapott ételt, majd frissíti a süti tartalmát.
+
+A kontrollerben definiálva van egy \texttt{checkout()} függvény, ami fizetéskor kerül meghívásra. Fizetés előtt ki kell választani a szervertől lekérdezett fizetési módok közül egyet. A fizetés-re kattintva meghívásra kerül a fentebb említett \texttt{checkout()} metódus, ami elküldi a szervernek a kosár tartalmát, a vásárló nevét, és a választott fizetési módot.
+
+\bigskip
+
+\noindent \texttt{/setting-meals}
+
+A \texttt{/setting-meals/:restaurant\_id} URL-re hivatkozva a \texttt{mealsSettingController} betölti a \texttt{/static/partials/setting\_meals.html} nézetet. A kontroller lekéri a szervertől a paraméterként megadott étterem ételkínálatát, és az étterem által forgalmazott ételek típusait. A lekérdezett ételeket egy táblázatban jeleníti meg, ahol ételtípus szerinti szűrési lehetőséget is biztosít.
+
+A kontrollerben definiálva van egy \texttt{removeMeal()} függvény, ami a paraméterként kapott étel objektumot elküldi a szervernek, a szerver törli az adatbázisból, majd visszatér egy státuszkóddal.
+
+\bigskip
+
+\noindent \texttt{/add-meal}
+
+Az \texttt{/add-meal} állapot a \texttt{/add-meal/:restaurant\_id} URL-re hivatkozva érhető el. A hivatkozás során a \texttt{mealsAddController} betölti a \texttt{/static/partials/add\_meal.html} nézetet. A kontrollernek egyetlen \texttt{addMeal()} metódusa van, ami az új étel felviteléért felelős. A metódus kap egy étel objektumot, ami a felhasználó által megadott adatokat tartalmazza. A szervernek paraméterként elküldi a kapott objektumot, és a módosítandó étterem azonosítóját. A szerver elvégzi a szükséges adatbázismódosításokat, majd visszatér egy státuszkóddal.
+
+\bigskip
+
+\noindent \texttt{/addRestaurant}
+
+Az \texttt{/addRestaurant} URL-en a \texttt{/static/partials/add\_restaurant.html} nézet érhető el, melynek megjelenítéséért az \texttt{addRestaurantController} a felelős. A kontrollerben van egy \texttt{addRestaurant()} függvény, amit meghívva elküldi a szervernek a paraméterként kapott adatokat, és a bejelentkezett felhasználó nevét. A szerver elvégzi a módosításokat, felviszi az adatbázisba az új éttermet, majd sikeres adatbázisműveletek esetén 200-as státuszkódot küld vissza válaszként.
+
+\bigskip
+
+\noindent \texttt{/my-orders}
+
+A \texttt{/static/partials/get\_orders.html} nézet a \texttt{/my-orders/:restaurant\_id} URL-en érhető el. A nézet megjelenítését az \texttt{ordersController} végzi. A kontroller lekéri a szervertől a paraméterként kapott étteremben leadott összes rendelést, majd egy táblázatban megjeleníti azokat.
+
+\bigskip
+
+\noindent \texttt{/my-profile}
+
+A \texttt{/my-profile} URL-re hivatkozva elérhetjük a \texttt{/static/partials/my\_profile.html} nézetet, melyet a \texttt{userProfileController} jelenít meg. A kontroller lekéri a szervertől az aktuális bejelentkezve lévő felhasználó felhasználói adatait.
+
+\bigskip
+
+\noindent \texttt{/edit-profile}
+
+Az \texttt{/edit-profile/:user\_id} URL-re való hivatkozás után a \texttt{userSettingsController} megjeleníti a \texttt{/static/partials/edit\_password.html} nézetet. A kontroller lekéri a szervertől az aktuális bejelentkezve lévő felhasználó felhasználói adatait. A kontrollerben definiálva van egy \texttt{editUser()} metódus, ami paraméterként elküldi a szervernek a lekért felhasználói adatokat, és a felhasználói felületről kapott adatokat. A szerver feldolgozza az adatokat, elvégzi az ellenőrzéseket, és módosítja a felhasználó jelszavát. Sikeres módosítás esetén 200-as státuszkódot küld vissza válaszként.
+
+\bigskip
+
+\noindent \texttt{/edit-restaurant}
+
+Az \texttt{editRestaurantController} betölti a \texttt{/static/partials/edit\_restaurant.html} nézetet az \texttt{/edit-restaurant/:restaurant\_id} URL-re hivatkozás után. A kontroller lekéri a szervertől a paraméterként kapott étterem adatait. A kontrollerben definiált \texttt{editRestaurant()} függvény paraméterként elküldi a szervernek a lekérdezett étterem adatait, és a felhasználói felületről kapott módosítandó adatokat. A szerver elvégzi a szükséges ellenőrzéseket és adatbázismódosításokat, majd visszatér egy státuszkóddal.
+
+\bigskip
+
+\noindent \texttt{/edit-meal}
+
+A \texttt{/static/partials/edit\_meal.html} nézetet a \texttt{/edit-meal/:meal\_id} URL-en lehet elérni. A nézetet az \texttt{editMealController} jeleníti meg. A kontroller lekéri a szervertől a paraméterként kapott étel adatait. A kontrollerben definiált \texttt{editMeal()} metódus paraméterként elküldi a szervernek a lekérdezett étel adatait, az ételt forgalmazó étterem azonosítóját, és a felhasználói felületről kapott módosítandó adatokat. A szerver elvégzi a szükséges ellenőrzéseket és adatbázismódosításokat, majd visszatér egy státuszkóddal.
