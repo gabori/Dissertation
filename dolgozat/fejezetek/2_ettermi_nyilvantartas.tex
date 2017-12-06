@@ -1,23 +1,23 @@
 \chapter{Éttermi nyilvántartás}
 
-Itt ki kell majd fejteni, hogy melyek azok a dolgok, amiket egy étteremnek nyilván kell tartania. Ebben a részben még nem kell belemenni a technikai részletekbe, hanem azt kell körüljárni, hogy mi a konkrét problémakör, annak mely részeire fog koncentrálni a dolgozat további része.
+%Itt ki kell majd fejteni, hogy melyek azok a dolgok, amiket egy étteremnek nyilván kell tartania. Ebben a részben még nem kell belemenni a technikai részletekbe, hanem azt kell körüljárni, hogy mi a konkrét problémakör, annak mely részeire fog koncentrálni a dolgozat további része.
 
-Elterjedt megoldások:
+%Elterjedt megoldások:
 
-* Ebben a részben össze kell szedni, hogy milyen elérhető megoldások vannak az éttermek számára.
-* Itt érdemes minél több elérhető megoldást összeszedni, és ha lehet diagramokat, összehasonlító táblázatokat is készíteni hozzá.
-* A bemutatott megoldásokat majd mindenképpen be is kell hivatkozni.
+%* Ebben a részben össze kell szedni, hogy milyen elérhető megoldások vannak az éttermek számára.
+%* Itt érdemes minél több elérhető megoldást összeszedni, és ha lehet diagramokat, összehasonlító táblázatokat is készíteni hozzá.
+%* A bemutatott megoldásokat majd mindenképpen be is kell hivatkozni.
 
 % TODO: Összeszedni táblázatba a funkciókat.
 
-Pl.:
+%Pl.:
 
-program neve | felhasználókezelés | profil | könyvelés | feladatkezelés | készletnyilvántartás |
+%program neve | felhasználókezelés | profil | könyvelés | feladatkezelés | készletnyilvántartás |
 
-profil: általános webshop ... teljesen egyedi, éttermekre szabott.
-feladatkezelés: pénztárgép szoftver is-e egyben? Mennyire
+%profil: általános webshop ... teljesen egyedi, éttermekre szabott.
+%feladatkezelés: pénztárgép szoftver is-e egyben? Mennyire
 
-Kb. 10 leginkább elterjedt program.
+%Kb. 10 leginkább elterjedt program.
 
 % \section{Éttermi nyilvántartás}
 
@@ -73,20 +73,20 @@ A magyar piacon jelenleg három online ételrendelési portál óriás van, a Ne
 
 Az alkalmazásom abban különbözik ezektől az online étrendelési portáloktól, hogy míg ezek a portálok úgymond csak közvetítő szerepet vállalnak, nem feltétlenül tartják nyilván az adatokat, a partner cégek egyébként is rendelkeznek egy saját étterem nyilvántartói rendszerrel és általában webes rendelő felülettel is. Addig az általam készített alkalmazás biztosítja a rendelésnyilvántartást, a vásárlónyilvántartást és a szerzett adatokból olyan statisztikákat, kimutatásokat állít elő, melyek elengedhetetlenek egy sikeres vállalkozáshoz.
 
-Ez nem feltétlen jó így fejezet címnek, pontosabban ezen a témán belül több fejezet is lehet, attól függően, hogy majd mivel és hogy sikerül elkészülni.
+%Ez nem feltétlen jó így fejezet címnek, pontosabban ezen a témán belül több fejezet is lehet, attól függően, hogy majd mivel és hogy sikerül elkészülni.
 
-Itt kb. olyasmire kell gondolni, mint
-- rendelések nyilvántartása,
-- promóciók, törzsvásárlói kedvezmények megvalósítása a rendszerben,
-- nyersanyagok nyilvántartása,
-- rendelési statisztikák, elemzés, megjelenítés,
-- ...
+%Itt kb. olyasmire kell gondolni, mint
+%- rendelések nyilvántartása,
+%- promóciók, törzsvásárlói kedvezmények megvalósítása a rendszerben,
+%- nyersanyagok nyilvántartása,
+%- rendelési statisztikák, elemzés, megjelenítés,
+%- ...
 
-Annyi biztos, hogy a címnek megfelelően a rendeléseket majd nyilván kell tartani. A többi ahhoz kapcsolható funkció, de csak akkor célszerű vele foglalkozni, ha az alapfunkciók már megvannak.
+%Annyi biztos, hogy a címnek megfelelően a rendeléseket majd nyilván kell tartani. A többi ahhoz kapcsolható funkció, de csak akkor célszerű vele foglalkozni, ha az alapfunkciók már megvannak.
 
-A tervezéséről szóló dolgokat az alkalmazás felépítésénél is el lehet kezdeni, de ott még inkább csak az interfészekre, az API jellegére, konvenciókra, illesztési módokra vonatkozóan.
+%A tervezéséről szóló dolgokat az alkalmazás felépítésénél is el lehet kezdeni, de ott még inkább csak az interfészekre, az API jellegére, konvenciókra, illesztési módokra vonatkozóan.
 
-Magában az implementációba annyira kell csak majd belemenni az alapfunkciók bemutatásánál, hogy a kiemelt kódpéldák alapján át lehessen tekinteni a rendszer egészét, és a leírás alapján aki akarja hellyel-közzel tuda is reprodukálni a rendszert.
+%Magában az implementációba annyira kell csak majd belemenni az alapfunkciók bemutatásánál, hogy a kiemelt kódpéldák alapján át lehessen tekinteni a rendszer egészét, és a leírás alapján aki akarja hellyel-közzel tuda is reprodukálni a rendszert.
 
 \section{Az alkalmazás alapfunkciói}
 
@@ -156,26 +156,26 @@ A felhasználó mindegyik éttermére megtudja majd hívni a rendelések funkci�
 
 Az étterem tulajdonosok számára lesz egy szolgáltatás, amely statisztikákat, grafikonokat állít elő egy adott időszakra, melyek nélkülözhetetlenek a további üzleti lépések meghozatalához, a sikeres üzleti élethez. A felhasználók megnézhetik például hogy melyik ételtípusból rendelik a legtöbbet, a különböző fizetési módok gyakoriságát, vagy például a felhasználók rendelésszámának eloszlását.
 
-\section{Statisztikai jellegű elemzések}
+%\section{Statisztikai jellegű elemzések}
 
-Felhasználói szokások elemzése
+%Felhasználói szokások elemzése
 
-Rendelések száma (idő függvényében)
-Rendelések összege
-Fizetési módok gyakorisága
-Ételek típusai
-Felhasználók rendelésszámának eloszlása
-Nap melyik szakában történt a rendelés (ehhez is eloszlás)
+%Rendelések száma (idő függvényében)
+%Rendelések összege
+%Fizetési módok gyakorisága
+%Ételek típusai
+%Felhasználók rendelésszámának eloszlása
+%Nap melyik szakában történt a rendelés (ehhez is eloszlás)
 
-Felhasználók osztályozása/klaszterezése
-- osztályozásnál eleve tudjuk, hogy mi a csoport jellemzője.
-- klaszterezésnél adottak a mintáink, szeretnénk megtudni, hogy milyen csoportok vannak benne.
+%Felhasználók osztályozása/klaszterezése
+%- osztályozásnál eleve tudjuk, hogy mi a csoport jellemzője.
+%- klaszterezésnél adottak a mintáink, szeretnénk megtudni, hogy milyen csoportok vannak benne.
 
-\section{Ajánlórendszer}
+%\section{Ajánlórendszer}
 
-Piaci kosár elemzés
+%Piaci kosár elemzés
 
-Amit meg kellene nézni:
-- Milyen termékhez milyen másik terméket érdemes ajánlani?
-- Mikor célszerű az akciókat meghírdetni és milyen termékekre vonatkozóan? (Például hónap elején-végén, karácsonykor, szezonalitást vizsgálni)
-- Felhasználónként mikor lehet külön üzenetet küldeni egy-egy akcióról? (Észrevétel: Nem érdemes túl sok akciót küldeni gyakran, mert spam lesz belőle.)
+%Amit meg kellene nézni:
+%- Milyen termékhez milyen másik terméket érdemes ajánlani?
+%- Mikor célszerű az akciókat meghírdetni és milyen termékekre vonatkozóan? (Például hónap elején-végén, karácsonykor, szezonalitást vizsgálni)
+%- Felhasználónként mikor lehet külön üzenetet küldeni egy-egy akcióról? (Észrevétel: Nem érdemes túl sok akciót küldeni gyakran, mert spam lesz belőle.)
