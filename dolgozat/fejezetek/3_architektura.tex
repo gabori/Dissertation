@@ -108,3 +108,71 @@ A felhasználó böngészőn keresztül tudja használni az alkalmazást. Az alk
 A szerver oldalon egy többrétegű struktúrát hoztam létre. Az alsó réteg az adatbázis, ami egy SQLite alapú relációs adatbázis, amelyhez a keretrendszer SQLAlchemy ORM-en keresztül csatlakozik, tehát a lekérdezéseket az SQLAlchemy-vel végzem. Az SQL adatbázist a 4. fejezetben fogom részletesebben taglalni.
 
 A klienstől érkező kérések feldolgozására az alkalmazás a Flask webes mikro keretrendszert használja. A flaskos réteg http válaszokat küld a kliensnek, melyeben az adatok JSON formátumúak. A flaskos réteg és az alsóbb rétegek között van egy közbenső réteg, az általam készített nyilvántartó csomag. A nyilvántartó csomagban lévő metódusok végzik a lekérdezéseket, ezeket a metódusokat hívom meg a flaskos rétegben. A közbenső réteg bevezetésére a későbbi továbbfejlesztési lehetőségek miatt volt szükség. A flask és a nyilvántartó csomag bemutatására a hetedik fejezben fog sor kerülni.
+
+\section{Az alkalmazás alapfunkciói}
+
+Az alkalmazásom lényegében éttermek és rendelések adatainak nyilvántartására fog szolgálni. Ebben a fejezetben az alap funkcionalitásokat fogom tárgyalni.
+
+\section{Bejelentkezés/ regisztráció}
+
+Az alkalmazásom egyik alap funkcionalitása a felhasználókezelés lesz. Csak regisztrált felhasználók számára lesznek elérhetőek a szolgáltatások, a kezdőlapon lesz lehetőség a bejelentkezésre, vagy regisztrációra. Alapvetően két felhasználói csoportot lehet majd megkülönböztetni, a vásárlókat és az étterem tulajdonosokat. A két csoport eltérő jogosultsági körrel fog rendelkezni, és más-más szolgáltatások lesznek számukra elérhetőek.
+
+\section{Vásárlók funkciói}
+
+\subsection{Böngészés az éttermek között}
+
+A vásárlóknak lehetőségük lesz az adatbázisban szereplő éttermek kínálatai között böngészni. Szűrési feltételek megadásával szűkíthetik a kilistázott éttermek listáját, hogy megtalálják a számukra legszimpatikusabbat.
+A kívánt étterem kiválasztása után a server kilistázza az adott étterem által kínált termékeket. A termékek között is lesz lehetőség szűrésre például típus szerint. A megrendelendő termékeket a vásárló belehelyezheti a kosárba. A kosár tartalma egy angular változóban lesz letárolva. A kosár tartalma is módosítható lesz.
+
+\subsection{Rendelés}
+
+A rendelés véglegesítése előtt a vásárlónak lehetősége lesz kiválasztani a kívánt fizetési módot. Rendelés során a kosár tartalma elküldésre kerül a servernek. A server létrehozza a szükséges order és \texttt{order\_meals} objektumokat, majd letárolja őket az adatbázisban. A rendelésről visszajelzést fog kapni a vásárló és az étterem tulajdonosa is. A rendelések adatait később statisztikák, kimutatások készítésénél lehet majd felhasználni.
+
+\subsection{Felhasználói adatok}
+
+A felhasználók számára lesz egy szolgáltatás, amely kilistázza az adott account adatait.
+
+\subsection{Jelszó módosítás}
+
+A felhasználói adatok kilistázása mellett lehetőség lesz a jelszó módosításra is. Ehhez egy űrlap kitöltésére lesz szükség, ahol meg kell majd adni az aktuális érvényben lévő jelszó mellett az új jelszót is. Az megadott adatokat server oldalon fogom vizsgálni, ha megadott jelszó megegyezik a felhasználói fiók tényleges jelszavával, akkor a server elvégzi a szükséges adatbázis módosításokat.
+
+\subsection{Törzsvásárlói kedvezmények}
+
+A vásárlók hűségének honorálása miatt, minden leadott rendelés után jutalompontokat írunk jóvá a rendelést leadó felhasználó javára. A pontokat fizetéskor lehet majd beváltani, ilyenkor a pontok összege levonásra fog kerülni a rendelés összegéből.
+
+\section{Étterem tulajdonosi funkciók}
+
+Az étterem tulajdonosoknak nyújtott szolgáltatások az éttermeik menedzselése, új éttermek felvitele a rendszerbe, és az éttermeikkel kapcsolatos statisztikák kimutatása.
+
+\subsection{Éttermeim}
+
+Az étterem tulajdonos számára adott lesz egy funkció, melynek segítségével ki tudják majd listázni a tulajdonukban lévő éttermeket. A felhasználó minden éttermének megtudja majd nézni az termék kínáltát, az étterembe leadott rendeléseket és tudja majd módosítani az adott étterem adatait.
+
+\subsection{Termékek módosítása}
+
+A felhasználó minden egyes éttermének meg tudja nézni a termékkínálatát. A termékekre lesz szűrési lehetőség a köztük történő navigáció megkönnyítése érdekében. Az egyes termékeket lehet majd törölni és módosítani, illetve lesz lehetőség újabb termékek felvitelére az adatbázisba.
+A termékek módosítása egy űrlap kitöltésével fog kezdődni, ahol meg kell majd adni a módosítandó adatokat. Ezeket az adatokat a server fogja megkapni, feldolgozni, és végrehajtani az adatbázisban.
+
+\subsection{Termékek törlése}
+
+A törlendő termékre a felhasználó meghívhatja a termék törlése funkciót, ekkor a termék letárolódik egy angular változóba és elküldésre kerül a servernek. A server feldolgozza a kapott adatokat, az adatbázisból törli a megfelelő azonosítójú terméket, majd véglegesíti az adatbázis módosításokat.
+
+\subsection{Termék felvitel}
+
+A termék felvitel funkció meghívásakor a felhasználó egy űrlapot fog látni. Miután kitöltötte a megfelelő mezőket, a felvitt adatok elküldésre kerülnek. A server a kapott adatokat feldolgozza, és létrehoz egy meal objektumot az adatok felhasználásával. Ezt az objektumot felviszi az adatbázisba, majd véglegesíti az adatbázis módosításokat.
+
+\subsection{Étterem létrehozása}
+
+A felhasználó éttermeket is hozzátud adni az adatbázishoz. Egy étterem felviteléhez mindössze egy űrlapot kell kitölteni a megfelelő adatokkal. Kitöltés után az adatokat az angular továbbítja a servernek. A server a kapott adatokból létrehoz egy új restaurant objektumot, és menti az adatbázisba.
+
+\subsection{Étterem módosítsa}
+
+Egy étterem módosításához egy űrlap kitöltésére lesz szüksége, amire a módosítandó adatokat kell felvinni. Az űrlap elküldése után az angular továbbítja az adatokat a servernek, ami feldolgozza és véglegesíti a módosításokat.
+
+\subsection{Rendelések}
+
+A felhasználó mindegyik éttermére megtudja majd hívni a rendelések funkciót, amely kilistázza az adott étteremben leadott rendeléseket.
+
+\subsection{Statisztikák}
+
+Az étterem tulajdonosok számára lesz egy szolgáltatás, amely statisztikákat, grafikonokat állít elő egy adott időszakra, melyek nélkülözhetetlenek a további üzleti lépések meghozatalához, a sikeres üzleti élethez. A felhasználók megnézhetik például hogy melyik ételtípusból rendelik a legtöbbet, a különböző fizetési módok gyakoriságát, vagy például a felhasználók rendelésszámának eloszlását.

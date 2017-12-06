@@ -1,13 +1,34 @@
 \chapter{Tesztelés}
 
-Itt is jobb lehet majd egy beszédesebb fejezetcím, de mindenképpen kell egy külön rész a tesztelésnek. Ebben olyan jellegű tesztekről van már szó, hogy mennyi- és milyen adattal sikerült kipróbálni. Lehetnek profilozással/válaszidőkkel kapcsolatos dolgok, becslések az adatbázis méretére vonatkozóan a későbbiekben.
+Miden szoftverben van hiba. A szoftvereket emberek fejlesztik, és az emberek hibáznak, ezért van szükség a programok tesztelésére. A szoftver termékben lévő hibák nagy részét még a végleges üzembe helyezés előtt ki lehet szűrni a tesztek segítségével. A tesztelések segítségével növelhetjük a program megbízhatóságát, minőségét. Teszteléssel se lehet minden hibát kiszűrni, ugyanis nagyobb rendszereknél nem lehetséges minden bemenetet tesztelni. Érdemese a teszteléseket a szoftver életciklusának korai szakaszában elkezdeni, mert minél hamarabb találjuk meg a hibát annál költséghatékonyabb a javítása.
 
-A tesztelésre majd még egyébként az implementációs (Alapfunkciók bemutatása) során is érdemes kitérni, értve ez alatt az egységteszteket.
+Több fajta tesztelési technikát különböztetünk meg. Beszélhetünk specifikáció alapú tesztről, amikor a tesztelő számára nem áll rendelkezésre a forráskód, és a specifikáció alapján készülnek a tesztek. Illetve létezik strukturális tesztelés, amikor egy kész struktúrát tesztelünk, például osztályokat, funkciókat vagy metódusokat.
 
-Ide igazán az lenne szép, ha már valamilyen valósághoz közeli adatokkal és felhasználási móddal ki lehetne majd próbálni, de ha van egy részletes belső teszt, akkor már az is nagyon jó.
+\section{Tesztelés szintjei}
 
-Ha a profilozás azt mutatja, hogy teljesítménygondok vannak, akkor érdemes megvizsgálni az alábbiakat:
+A tesztelésnek több szintje is van, léteznek teljes rendszer tesztek,	 amikor azt ellenőrzik, hogy a termék megfelel e a specifikációnak. A rendszerteszt már a kész terméket ellenőrzi. A rendszerteszteket gyakran független cég végzi. Fontos, hogy a tesztkörnyezet minél inkább hasonlítson a megrendelő környezetére.
 
-SQLAlchemy-vel és úgy általában ORM-mel kapcsolatos dolgok
+A tesztelés egy másik szintje az integrációs teszt. Az integrációs teszt az elkészült modulok együttes működését teszteli. Tesztelik a komponensek közti interfészeket, illetve a más rendszerek felé nyújtott interfészeket is.
 
-(?) Biztos megéri-e ORM-et használni?
+A tesztelések legalsó a szintje a komponensteszt. A komponensteszt külön-külön teszteli a rendszer egyes komponenseit. Két gyakran használt fajtája van a komponensteszteknek, a modulteszt és a unit-teszt. A modulteszttel általában a nem-funkcionális részeket szokták tesztelni, például, hogy van a memory leak.
+
+\section{Unit-test}
+
+Az egységteszt a funkciókat teszteli. Ismerjük a metódus visszatérési értékét egy adott bemeneti paraméterre, ha a tényleges visszatérési érték egyezik az elvárt értékkel, akkor a teszt sikeres, különben sikertelen. A unit-tesztek lényege, hogy a szoftverben történt változás utána csak újra le kell futtatni a meglévő egységteszteket, és ha egyik teszt eset se bukik el, akkor a változtatás nem okozod hibát a rendszerben.
+A unit-tesztek egyik nagy előnye, hogy a legtöbb fejlesztő környezet támogatja őket, tehát egyszerű az implementálásuk. A Phyton esetén is van egy egységtesztelő keretrendszer, amire PyUnit néven szoktak hivatkozni.
+
+A PyUnit a JUnit Python nyelvű változat. Támogatja a tesztek automatizálását, összegyűjtésüket gyűjteménybe, és a tesztek függetlenségét. Az alkalmazásom szerveroldalának tesztelésére unit-teszteket használtam.
+
+\begin{python}
+import unittest
+
+class RestaurantTest(unittest.TestCase):
+    """Test cases for testing the restaurant class"""
+    
+    def test_empty_restaurant(self):
+        # Set the preconditions ...
+        restaurant
+        # Check the postconditions ...
+        self.assertEqual(x, 10)
+\end{python}
+
