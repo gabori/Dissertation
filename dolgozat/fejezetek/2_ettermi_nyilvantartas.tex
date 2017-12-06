@@ -46,7 +46,7 @@ Fontos statisztikákat, grafikonokat állítanak elő egy adott időszakra, mely
 
 Az internetet böngészve számos étterem nyilvántartó szoftvert lehet találni. Vannak köztük online webalkalmazások, és letölthető desktop alkalmazások is. Összeszedtem a már létező alternatívák közül a Magyarországon legelterjedtebbeket, és egy táblázatban néhány szempont alapján összehasonlítottam őket (\ref{tab:features}. táblázat).
 
-\begin{table}
+\begin{table}[h!]
 \centering
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
@@ -60,9 +60,36 @@ MultiStore & nincs & teljesen egyedi & van & igen & igen \\
 \hline
 Stand-Mágus & van & teljesen egyedi & van & igen & igen \\
 \hline
+E-étterem & nincs & teljesen egyedi & van & igen & igen \\
+\hline
+Com-Passz & nincs & teljesen egyedi & van & igen & igen \\
+\hline
 \end{tabular}
-\caption{Elterjedt funkciók}
+\caption{Az elterjedt alkalmazások funkciói}
 \label{tab:features}
+\end{table}
+
+Nem csak hazánkban ilyen népszerűek az éttermi szoftverek. \Aref{tab:kulfoldi}. táblázatba összeszedtem néhány külföldi megvalósítást.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+Program neve & felhasználókezelés & profil & könyvelés & feladatkezelés & készletnyilvántartás \\
+\hline
+eZee Burrp! & van & teljesen egyedi & van & igen & igen \\
+\hline
+TapHunter & nincs & teljesen egyedi & nincs & igen & igen \\
+\hline
+BIM POS & van & teljesen egyedi  & van & igen & igen \\
+\hline
+Spoonfed & nincs & teljesen egyedi & van & igen & nincs \\
+\hline
+Aldelo for Restaurants & nincs & teljesen egyedi & nincs & igen & igen \\
+\hline
+\end{tabular}
+\caption{Néhány elterjedt, külföldi alkalmazás}
+\label{tab:kulfoldi}
 \end{table}
 
 A táblázat első oszlopában a szoftver neve szerepel. A második oszlopban a felhasználókezelés, ami azt takarja, hogy a szoftver funkció között van e vendég nyilvántartás, tehát, hogy lehet e regisztrálni a vendégeket. A harmadik oszlopban a szoftver profilját, arculatát jellemeztem. A negyedik oszlopban azt vizsgáltam, hogy van e integrált könyvelés funkció az alkalmazásban. Az 5. oszlopban feladatkezelés alatt azt értettem, hogy a pénztárgép funkcióit is a szoftver látja e el. A hatodik azaz utolsó oszlopban a szoftver raktár készlet kezelését vizsgáltam.
@@ -73,109 +100,36 @@ A magyar piacon jelenleg három online ételrendelési portál óriás van, a Ne
 
 Az alkalmazásom abban különbözik ezektől az online étrendelési portáloktól, hogy míg ezek a portálok úgymond csak közvetítő szerepet vállalnak, nem feltétlenül tartják nyilván az adatokat, a partner cégek egyébként is rendelkeznek egy saját étterem nyilvántartói rendszerrel és általában webes rendelő felülettel is. Addig az általam készített alkalmazás biztosítja a rendelésnyilvántartást, a vásárlónyilvántartást és a szerzett adatokból olyan statisztikákat, kimutatásokat állít elő, melyek elengedhetetlenek egy sikeres vállalkozáshoz.
 
-%Ez nem feltétlen jó így fejezet címnek, pontosabban ezen a témán belül több fejezet is lehet, attól függően, hogy majd mivel és hogy sikerül elkészülni.
+\section{Ajánlórendszer}
 
-%Itt kb. olyasmire kell gondolni, mint
-%- rendelések nyilvántartása,
-%- promóciók, törzsvásárlói kedvezmények megvalósítása a rendszerben,
-%- nyersanyagok nyilvántartása,
-%- rendelési statisztikák, elemzés, megjelenítés,
-%- ...
+Ajánlórendszerekkel nap mint nap találkozunk az interneten. Az ajánlórendszereknek köszönhetjük az online vásárlás közben nekünk ajánlott termékeket, videó nézés közben a videókat, melyek számunkra érdekesek lehetnek, vagy éppen böngészés közben olyan cikkek jelennek meg, melyek felkelthetik érdeklődésünket. Ezek rendszerek lényegében speciális információ szűrű rendszerek. Szükségük van a felhasználók adatbázisára, a termékek adatbázisára és a köztük lévő kapcsolatra. Az előbbi adatokból profilokat építenek tanuló algoritmusok segítségével. A kapott modellek alapján a rendszer már képes olyan tartalmat ajánlani, ami érdekes lehet a felhasználó számára.
 
-%Annyi biztos, hogy a címnek megfelelően a rendeléseket majd nyilván kell tartani. A többi ahhoz kapcsolható funkció, de csak akkor célszerű vele foglalkozni, ha az alapfunkciók már megvannak.
+\subsection{Az ajánlási feladat definíciója}
 
-%A tervezéséről szóló dolgokat az alkalmazás felépítésénél is el lehet kezdeni, de ott még inkább csak az interfészekre, az API jellegére, konvenciókra, illesztési módokra vonatkozóan.
+Ahogy már fentebb említettem, szükség van a felhasználók profiljára. A felhasználók jelölése: $U$. A termékek jelölélese: $I$. Adott egy $f: U \times I \rightarrow R$ leképzés, ahol $R$ egy halmaz teljes rendezéssel. A cél meghatározni az $\hat{f}: U \times I \rightarrow R$ leképzést, amely teljesen definiált az $U \times I$ téren, és a lehető legjobban közelíti $f$-et.
 
-%Magában az implementációba annyira kell csak majd belemenni az alapfunkciók bemutatásánál, hogy a kiemelt kódpéldák alapján át lehessen tekinteni a rendszer egészét, és a leírás alapján aki akarja hellyel-közzel tuda is reprodukálni a rendszert.
+\subsection{Az ajánlási feladat megoldása}
 
-\section{Az alkalmazás alapfunkciói}
+Az ajánlási feladat megoldása egy olyan algoritmus, ami meghatározza $\hat{f}$-et. Az ajánlórendszer az $\hat{f}$-et fogja használni az ajánlatok tételénél.
 
-Az alkalmazásom lényegében éttermek és rendelések adatainak nyilvántartására fog szolgálni. Ebben a fejezetben az alap funkcionalitásokat fogom tárgyalni.
+\subsection{Algoritmusok osztályozása}
 
-\section{Bejelentkezés/ regisztráció}
+Ezeket az algoritmusokat több féle szempont szerint osztályozhatjuk. Létezik osztályzás az algoritmusban használt megközelítés alapján, ide tartoznak a gráf alapú módszerek, a gépi tanulás modellt használó eljárások, és például a hasonlóságon alapuló módszerek.
 
-Az alkalmazásom egyik alap funkcionalitása a felhasználókezelés lesz. Csak regisztrált felhasználók számára lesznek elérhetőek a szolgáltatások, a kezdőlapon lesz lehetőség a bejelentkezésre, vagy regisztrációra. Alapvetően két felhasználói csoportot lehet majd megkülönböztetni, a vásárlókat és az étterem tulajdonosokat. A két csoport eltérő jogosultsági körrel fog rendelkezni, és más-más szolgáltatások lesznek számukra elérhetőek.
+Lehet osztályozni felhasznált információk alapján is. Ebbe a csoportba tartozik a content based methods, amikor a felhasználó korábbi értékelései alapján történik az ajánlatétel. Illetve a collaborative filtering, a kapott inputhoz hasonló adatok is felhasználásra kerülnek az ajánlattétel során. Ennek két típusa van a user-based, amikor a cél felhasználó ízléséhez hasonló ízlésű felhasználók szavazatait is figyelembe veszik az ajánlattételkor. És az item-based algoritmusok, amikor a választott termékhez hasonló termékeket ajánlj fel a rendszer.
 
-\section{Vásárlók funkciói}
+\subsection{Ontológia}
 
-\subsection{Böngészés az éttermek között}
+Az ontológiák használata megoldást biztosít, az alkalmazások számára, hogy fel tudják kutatni az adatbázisok belső jelentéseit. Az adatbázisokban az egyes fogalmak más-más jelentéssel bírhatnak. Egy olyan programnak, amely információt használ fel ezekből az adatbázisokból, tudnia kell, hogy az általa alkalmazott fogalmak ugyanazt a dolgot jelentik.
 
-A vásárlóknak lehetőségük lesz az adatbázisban szereplő éttermek kínálatai között böngészni. Szűrési feltételek megadásával szűkíthetik a kilistázott éttermek listáját, hogy megtalálják a számukra legszimpatikusabbat.
-A kívánt étterem kiválasztása után a server kilistázza az adott étterem által kínált termékeket. A termékek között is lesz lehetőség szűrésre például típus szerint. A megrendelendő termékeket a vásárló belehelyezheti a kosárba. A kosár tartalma egy angular változóban lesz letárolva. A kosár tartalma is módosítható lesz.
+Az ontológia a fogalomalkotás, vagy fogalomfeltérképezés specifikációját, azaz a körülírását, megkülönböztetését jelenti. Az ontológia egy formális és explicit leírása egy elosztott elképzelésnek. 
 
-\subsection{Rendelés}
+A mesterséges intelligencia területén ontológiákat a tudás megosztása és újbóli felhasználása céljából hoznak létre. A tudás átadása úgy történik, hogy különböző tulajdonságokat rendelünk az egyes osztályokhoz, és lehetővé tesszük, hogy a leszármazottjaik örököljék ezeket a tulajdonságokat.
 
-A rendelés véglegesítése előtt a vásárlónak lehetősége lesz kiválasztani a kívánt fizetési módot. Rendelés során a kosár tartalma elküldésre kerül a servernek. A server létrehozza a szükséges order és \texttt{order\_meals} objektumokat, majd letárolja őket az adatbázisban. A rendelésről visszajelzést fog kapni a vásárló és az étterem tulajdonosa is. A rendelések adatait később statisztikák, kimutatások készítésénél lehet majd felhasználni.
+Az ontológiák egyik legismertebb változata a Pizza ontológia, amit a Manchesteri Egyetemen fejlesztettek ki tanulmányi célokból. Ez egy egyszerű, könnyen értelmezhető ontóliga. Nagy mennyiségű relációt ki lehet fejezni a pizzákhoz rendelt feltét tulajdonságok alapján.
 
-\subsection{Felhasználói adatok}
+A pizza ontológia segítségével meg lehetne valósítani egy ajánlórendszert az alkalmazásomban. A megvalósításhoz az adatbázis minimális bővítésére lenne szükség, a rendelésekből kinyert adatok, felhasználói szokások segítségével könnyen, és hatékonyan meg lehetne valósítani.
 
-A felhasználók számára lesz egy szolgáltatás, amely kilistázza az adott account adatait.
+Az ajánlórendszer működése a pizza ontológián alapulna, amit OWL segítségével tudnám definiálni és példányosítani. Az OWL azaz Web Ontology Language, megkönnyíti a webes tartalmak értelmezését kiegészítő szókincs használatával, és formális jelentéstannal. Minden egyes pizza a root pizzából származik, a feltétek széles körében lehet válogatni. Minél több azonos feltét van két különböző pizzán annál nagyobb valószínűséggel fogja őket ajánlani a felhasználónak. Amennyiben a felhasználó olyan pizzákat rendel, melyeken hús alapú feltét is szerepel, a rendszer nem fog vegetáriánus pizzát ajánlani neki.
 
-\subsection{Jelszó módosítás}
-
-A felhasználói adatok kilistázása mellett lehetőség lesz a jelszó módosításra is. Ehhez egy űrlap kitöltésére lesz szükség, ahol meg kell majd adni az aktuális érvényben lévő jelszó mellett az új jelszót is. Az megadott adatokat server oldalon fogom vizsgálni, ha megadott jelszó megegyezik a felhasználói fiók tényleges jelszavával, akkor a server elvégzi a szükséges adatbázis módosításokat.
-
-\subsection{Törzsvásárlói kedvezmények}
-
-A vásárlók hűségének honorálása miatt, minden leadott rendelés után jutalompontokat írunk jóvá a rendelést leadó felhasználó javára. A pontokat fizetéskor lehet majd beváltani, ilyenkor a pontok összege levonásra fog kerülni a rendelés összegéből.
-
-\section{Étterem tulajdonosi funkciók}
-
-Az étterem tulajdonosoknak nyújtott szolgáltatások az éttermeik menedzselése, új éttermek felvitele a rendszerbe, és az éttermeikkel kapcsolatos statisztikák kimutatása.
-
-\subsection{Éttermeim}
-
-Az étterem tulajdonos számára adott lesz egy funkció, melynek segítségével ki tudják majd listázni a tulajdonukban lévő éttermeket. A felhasználó minden éttermének megtudja majd nézni az termék kínáltát, az étterembe leadott rendeléseket és tudja majd módosítani az adott étterem adatait.
-
-\subsection{Termékek módosítása}
-
-A felhasználó minden egyes éttermének meg tudja nézni a termékkínálatát. A termékekre lesz szűrési lehetőség a köztük történő navigáció megkönnyítése érdekében. Az egyes termékeket lehet majd törölni és módosítani, illetve lesz lehetőség újabb termékek felvitelére az adatbázisba.
-A termékek módosítása egy űrlap kitöltésével fog kezdődni, ahol meg kell majd adni a módosítandó adatokat. Ezeket az adatokat a server fogja megkapni, feldolgozni, és végrehajtani az adatbázisban.
-
-\subsection{Termékek törlése}
-
-A törlendő termékre a felhasználó meghívhatja a termék törlése funkciót, ekkor a termék letárolódik egy angular változóba és elküldésre kerül a servernek. A server feldolgozza a kapott adatokat, az adatbázisból törli a megfelelő azonosítójú terméket, majd véglegesíti az adatbázis módosításokat.
-
-\subsection{Termék felvitel}
-
-A termék felvitel funkció meghívásakor a felhasználó egy űrlapot fog látni. Miután kitöltötte a megfelelő mezőket, a felvitt adatok elküldésre kerülnek. A server a kapott adatokat feldolgozza, és létrehoz egy meal objektumot az adatok felhasználásával. Ezt az objektumot felviszi az adatbázisba, majd véglegesíti az adatbázis módosításokat.
-
-\subsection{Étterem létrehozása}
-
-A felhasználó éttermeket is hozzátud adni az adatbázishoz. Egy étterem felviteléhez mindössze egy űrlapot kell kitölteni a megfelelő adatokkal. Kitöltés után az adatokat az angular továbbítja a servernek. A server a kapott adatokból létrehoz egy új restaurant objektumot, és menti az adatbázisba.
-
-\subsection{Étterem módosítsa}
-
-Egy étterem módosításához egy űrlap kitöltésére lesz szüksége, amire a módosítandó adatokat kell felvinni. Az űrlap elküldése után az angular továbbítja az adatokat a servernek, ami feldolgozza és véglegesíti a módosításokat.
-
-\subsection{Rendelések}
-
-A felhasználó mindegyik éttermére megtudja majd hívni a rendelések funkciót, amely kilistázza az adott étteremben leadott rendeléseket.
-
-\subsection{Statisztikák}
-
-Az étterem tulajdonosok számára lesz egy szolgáltatás, amely statisztikákat, grafikonokat állít elő egy adott időszakra, melyek nélkülözhetetlenek a további üzleti lépések meghozatalához, a sikeres üzleti élethez. A felhasználók megnézhetik például hogy melyik ételtípusból rendelik a legtöbbet, a különböző fizetési módok gyakoriságát, vagy például a felhasználók rendelésszámának eloszlását.
-
-%\section{Statisztikai jellegű elemzések}
-
-%Felhasználói szokások elemzése
-
-%Rendelések száma (idő függvényében)
-%Rendelések összege
-%Fizetési módok gyakorisága
-%Ételek típusai
-%Felhasználók rendelésszámának eloszlása
-%Nap melyik szakában történt a rendelés (ehhez is eloszlás)
-
-%Felhasználók osztályozása/klaszterezése
-%- osztályozásnál eleve tudjuk, hogy mi a csoport jellemzője.
-%- klaszterezésnél adottak a mintáink, szeretnénk megtudni, hogy milyen csoportok vannak benne.
-
-%\section{Ajánlórendszer}
-
-%Piaci kosár elemzés
-
-%Amit meg kellene nézni:
-%- Milyen termékhez milyen másik terméket érdemes ajánlani?
-%- Mikor célszerű az akciókat meghírdetni és milyen termékekre vonatkozóan? (Például hónap elején-végén, karácsonykor, szezonalitást vizsgálni)
-%- Felhasználónként mikor lehet külön üzenetet küldeni egy-egy akcióról? (Észrevétel: Nem érdemes túl sok akciót küldeni gyakran, mert spam lesz belőle.)
+A fentiekben leírt ajánlórendszer megvalósítása lenne az első lépés az alkalmazásom továbbfejlesztésében. 
