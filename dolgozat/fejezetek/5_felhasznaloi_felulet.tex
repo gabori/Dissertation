@@ -1,14 +1,8 @@
 \chapter{A felhasználói felület}
 
-%Itt kellene majd bemutatni, hogy a felhasználói felület egyáltalán milyen részekből áll, azokat hogy lehet elérni és használni.
+\section{Bejelentkezés/ regisztráció}
 
-%Attól függően, hogy a funkciók inkább kliens vagy szerver oldalon lesznek majd, itt lehet részletezni az összes, felhasználói felülettel kapcsolatos tudnivalót, de az is jó megoldás, ha minden funkciónál külön kerül bemutatásra.
-
-\section{Felhasználói felület}
-
-\subsection{Bejelentkezés/ regisztráció}
-
-Az alkalmazás használatához érvényes felhasználói fiókra van szükség. Az alkalmazást használó felhasználókat két típusra lehet bontani, vannak az egyszerű userek(vásárlók), akik ételeket tudnak rendelni az adatbázisban szereplő éttermekből, és vannak az étteremtulajdonosok, akik saját éttermüket tudják menedzselni. Az alkalmazás további szolgáltatásainak az igénybevételéhez mindenképp be kell jelentkezni vagy userként, vagy étteremtulajdonosként. Amennyibben a felhasználó most először látogatott el az oldalra, és még nincs felhasználói fiókja, van lehetősége userként regisztrálnia magát. Ehhez mindössze egy egyszerű űrlapot kell kitöltenie, ahol többek között meg kell adnia a nevét, elérhetőségét, címét. Abban az esetben, ha valaki étteremtulajdonosként szeretne regisztrálni, meg kell keresni egy email-el az oldal üzemeltetőjét.
+Az alkalmazás használatához érvényes felhasználói fiókra van szükség. Az alkalmazást használó felhasználókat két típusra lehet bontani, vannak az egyszerű userek(vásárlók), akik ételeket tudnak rendelni az adatbázisban szereplő éttermekből, és vannak az étteremtulajdonosok, akik saját éttermüket tudják menedzselni. Az alkalmazás további szolgáltatásainak az igénybevételéhez mindenképp be kell jelentkezni vagy userként, vagy pedig étteremtulajdonosként. Amennyibben a felhasználó most először látogatott el az oldalra, és még nincs felhasználói fiókja, van lehetősége userként regisztrálni magát. Ehhez mindössze egy egyszerű űrlapot kell kitöltenie, ahol többek között meg kell adnia a nevét, elérhetőségét, címét. Abban az esetben, ha valaki étteremtulajdonosként szeretne regisztrálni, meg kell keresni egy e-mail-el az oldal üzemeltetőjét.
 
 \begin{figure}
 \centering
@@ -19,7 +13,7 @@ Az alkalmazás használatához érvényes felhasználói fiókra van szükség. 
 
 \section{Egyszerű user funkciói}
 
-A továbbiakban az alapfunkciókat a szerint fogom leírni, hogy melyik felhasználói csoport számára érhetők el. A vásárlók által elérhető szolgáltatásokkal kezdem
+A továbbiakban az alapfunkciókat aszerint fogom leírni, hogy melyik felhasználói csoport számára érhetők el. A vásárlók által elérhető szolgáltatásokkal kezdem.
 
 \subsection{Éttermek listázása}
 
@@ -40,7 +34,7 @@ Miután a vásárló kiválasztotta a neki legszimpatikusabb éttermet, az „in
 
 Az ételek egymás alatt, egy táblázatban jelennek meg (\ref{fig:menu}. ábra). A táblázat egyes soraiban egy-egy étel szerepel, az oszlopaiban pedig az adott étel adatai, többek között neve, egy kép róla, az ára és egy rövid leírás róla. A táblázat jobb szélső oszlopában egy „kosárba” feliratú gomb található, amit megnyomva a kiválasztott termék belekerül a felhasználó kosarába.
 
-Az étlap felett van egy legördülő menü, ahol vásárló kiválaszthatja, hogy milyen típusú ételek között szeretne válogatni, milyen típusút szeretne rendelni. Az étel típus kiválasztása után, az ételek listája szűrve lesz az adott típus szerint, tehát csak a kívánt típusú ételek fognak megjelenni a táblázatban.
+Az étlap felett van egy legördülő menü, ahol vásárló kiválaszthatja, hogy milyen típusú ételek között szeretne válogatni, milyen típusút szeretne rendelni. Az ételtípus kiválasztása után, az ételek listája szűrve lesz az adott típus szerint, tehát csak a kívánt típusú ételek fognak megjelenni a táblázatban.
 
 Miután a vásárló kiválasztotta a rendelni kívánt termékeket, és hozzáadta őket a kosárhoz, megjelenik a felületen a „fizetés” gomb, amire kattintva elérjük a fizetés funkciót.
 
@@ -55,7 +49,7 @@ Miután a vásárló kiválasztotta a rendelni kívánt termékeket, és hozzáa
 
 A felhasználói felületen a kosár az étlap mellett, jobb oldalon található szintén egy táblázatos megoldással. A hozzáadott termékek neve és ára egymás alatt jelenik meg, egy végösszeggel a táblázat alján (\ref{fig:order}. ábra).
 
-A kosár legalsó sorában egy „fizetés” gomb található. A gombra kattintva felugrik egy modal ablak, ahol egy legördülő menüből lehet kiválasztani a kívánt fizetési módot. Az alkalmazásban korlátozott számú fizetési lehetőség van, ami éttermenként változó lehet. Hogy egy étterem milyen fizetési lehetőségeket biztosít, azt az adott étterem felvitelekor kell megadni.
+A kosár legalsó sorában egy „fizetés” gomb található. A gombra kattintva felugrik egy modal ablak, ahol egy legördülő menüből lehet kiválasztani a kívánt fizetési módot. Az alkalmazásban korlátozott számú fizetési lehetőség közül lehet választani, ami éttermenként változó lehet. Hogy egy étterem milyen fizetési lehetőségeket biztosít, azt az adott étterem felvitelekor kell megadni.
 
 \begin{figure}
 \centering
@@ -75,9 +69,9 @@ A kívánt fizetési lehetőség kiválasztása után (\ref{fig:payment}. ábra)
 
 \subsection{Profilom}
 
-A profilom funkció kilistázza a bejelentkezett felhasználó adatait. Egy táblázatba foglalva kilistázza a felhasználó teljes nevét, felhasználónevét, email címét, telefonszámát, jutalompontját és címét/címeit. Egy felhasználónak akár több különböző szállítása címe is. A táblázat legalsó sorában van egy gomb „jelszó módosítása” felirattal (\ref{fig:profile}. ábra).
+A profilom funkció kilistázza a bejelentkezett felhasználó adatait. Egy táblázatba foglalva kilistázza a felhasználó teljes nevét, felhasználónevét, e-mail címét, telefonszámát, jutalompontját és címét/címeit. Egy felhasználónak akár több különböző szállítása címe is lehet. A táblázat legalsó sorában van egy gomb „jelszó módosítása” felirattal (\ref{fig:profile}. ábra).
 
-Jutalompontot a rendelések után kap a vásárló, minden elköltött 100 forint után egy jutalom pontot ír jóvá a rendszer. Az összegyűjtött pontokat, fizetéskor be lehet váltani, ilyenkor a beváltott pontok összege levonásra kerül a rendelés végösszegéből.
+Jutalompontot a rendelések után kap a vásárló, minden elköltött 1000 forint után három jutalom pontot ír jóvá a rendszer. Az összegyűjtött pontokat, fizetéskor be lehet váltani, ilyenkor a beváltott pontok összege levonásra kerül a rendelés végösszegéből.
 
 \begin{figure}
 \centering
@@ -99,7 +93,7 @@ A „Jelszó módosítása” gombra kattintva megjelenik egy űrlap, ahol a fel
 
 \subsection{Éttermeim}
 
-Az éttermeim funkció kilistázza a felhasználó adatbázisban szereplő éttermeit. Az éttermek táblázatos elrendezésben jelennek meg a felületen, a táblázat minden egyes sora, egy éttermet reprezentál. A táblázat oszlopaiban az éttermek különböző adatai találhatók, többek között az étterem logója, neve címe. A jobb szélső oszlopban három gomb található, „Étlap szerkesztése”, „Étterem szerkesztése” és a „Rendelések” (\ref{fig:my_restaurants}. ábra).
+Az éttermeim funkció kilistázza a felhasználó adatbázisban szereplő éttermeit. Az éttermek táblázatos elrendezésben jelennek meg a felületen. A táblázat minden egyes sora, egy éttermet reprezentál. A táblázat oszlopaiban az éttermek különböző adatai találhatók, többek között az étterem logója, neve, címe. A jobb szélső oszlopban négy gomb található, „Étlap szerkesztése”, „Étterem szerkesztése”, „Rendelések” és a „Statisztikák” (\ref{fig:my_restaurants}. ábra).
 
 \begin{figure}
 \centering
@@ -110,11 +104,11 @@ Az éttermeim funkció kilistázza a felhasználó adatbázisban szereplő étte
 
 \subsection{Étlap szerkesztése}
 
-Az étlap szerkesztése menüpont kiválasztása utána, egy táblázatot fogunk látni az adott étterem által forgalmazott ételekről és ezen ételek adatairól. Az elrendezés hasonló a user oldalon látott étlapok elrendezéséhez.
+Az étlap szerkesztése menüpont kiválasztása után, egy táblázatot fogunk látni az adott étterem által forgalmazott ételekről és ezen ételek adatairól. Az elrendezés hasonló a user oldalon látott étlapok elrendezéséhez.
 
 Az ételek egymás alatt, egy táblázatban jelennek meg. A táblázat egyes soraiban egy-egy étel szerepel, az oszlopaiban pedig az adott étel adatai. A táblázat jobb szélső oszlopában két gomb található, „Étel szerkesztése”, „Étel törlése”. A táblázat alatt egy „Étel felvitele” feliratú gomb van.
 
-A táblázat felett egy legördülő menü van, amelynek segítségével a tulajdonos rá tud szűrni a különböző ételtípusokra, ezáltal könnyebben megtalálhatja a szerkeszteni, vagy törölni kívánt terméket. Az étel típus kiválasztása után, az ételek listája szűrve lesz az adott típus szerint, tehát csak a kívánt típusú ételek fognak megjelenni a táblázatban (\ref{fig:new_meal}. ábra).
+A táblázat felett egy legördülő menü van, amelynek segítségével a tulajdonos rá tud szűrni a különböző ételtípusokra, ezáltal könnyebben megtalálhatja a szerkeszteni, vagy törölni kívánt terméket. Az ételtípus kiválasztása után, az ételek listája szűrve lesz az adott típus szerint, tehát csak a kívánt típusú ételek fognak megjelenni a táblázatban (\ref{fig:new_meal}. ábra).
 
 \begin{figure}
 \centering
@@ -125,11 +119,11 @@ A táblázat felett egy legördülő menü van, amelynek segítségével a tulaj
 
 \subsection{Étel törlése}
 
-Az étterem tulajdonosnak lehetősége van testre szabnia az étterme által biztosított kínáltaot. Vannak bizonyos ételek, melyeket csak szezonálisan lehet elkészíteni az alapszükségletük miatt, vagy csak valamilyen oknál fogva úgy dönt a vezetőség, hogy le kell kerülnie az étlapról. Ilyenkor van szükség az étel törlés funkcióra. Az „Étel törlése” gombra kattintva meghívásra kerül az étel törlése funkció, melynek hatására a kiválasztott étel törlődik a megjelenített ételek listájából, és törlődik az adatbázisból is.
+Az étteremtulajdonosnak lehetősége van testre szabni az étterme által biztosított kínálatot. Vannak bizonyos ételek, melyeket csak szezonálisan lehet elkészíteni az alapanyag-szükségletük miatt, vagy csak valamilyen oknál fogva úgy dönt a vezetőség, hogy le kell kerülnie az étlapról. Ilyenkor van szükség az étel törlése funkcióra. Az „Étel törlése” gombra kattintva meghívásra kerül az étel törlése funkció, melynek hatására a kiválasztott étel törlődik a megjelenített ételek listájából, és törlődik az adatbázisból is.
 
 \subsection{Étel szerkesztése}
 
-Az étel szerkesztése funkcióval lehetőséget biztosítok az étterem tulajdonos számára, az étlapon szereplő termékek adatainak módosítására. Tehát ha egy adott ételnek megváltozik az ára vagy például az összetétele, akkor nem kell törölni azt, majd az új adatokkal ismét felvinni az adatbázisba. Mindössze rá kell kattintani a szerkeszteni kívánt termék sorában található gombok közül az „Étel szerkesztése” gombra, melynek hatására meghívódik az étel szerkesztése funkció.
+Az étel szerkesztése funkcióval lehetőséget biztosítok az étteremtulajdonos számára, az étlapon szereplő termékek adatainak módosítására. Tehát ha egy adott ételnek megváltozik az ára vagy például az összetétele, akkor nem kell törölni azt, majd az új adatokkal ismét felvinni az adatbázisba. Mindössze rá kell kattintani a szerkeszteni kívánt termék sorában található gombok közül az „Étel szerkesztése” gombra, melynek hatására meghívódik az étel szerkesztése funkció.
 
 Egy űrlapot fogunk látni, ahol a szükséges módosítások elvégzése után, a mentés gombbal lehet véglegesíteni a módosítást (\ref{fig:edit_meal}. ábra).
 
@@ -168,20 +162,20 @@ Egy étteremtulajdonosnak lehetősége lesz az éttermei adatainak módosítás�
 
 \subsection{Étterem hozzáadása}
 
-Egy étterem tulajdonosnak több étterme is lehet az adatbázisban. Az étterem hozzáadása menüpont alatt van lehetőség egy újabb éttermet felvinni. 
+Egy étteremtulajdonosnak több étterme is lehet az adatbázisban. Az étterem hozzáadása menüpont alatt van lehetőség egy újabb éttermet felvinni. 
 A menüpontra kattintva egy űrlapot fogunk látni, ahol a beviteli mezők egymás alatt helyezkednek el. Az egyes beviteli mezőkben az étterem különböző adatait lehet megadni. Az étterem nevét, leírását, címét. Ha elkészültünk az adatok megadásával, a „Felvitel” gombbal lehet véglegesíteni ezt a műveletet (\ref{fig:add_restaurant}. ábra).
 
 \subsection{Profilom}
 
-A profilom funkció az étterem tulajdonosok szempontjából is ugyanaz, mint a vásárlóknál. Kilistázza a bejelentkezett felhasználó adatait. Egy táblázatba foglalva kilistázza a felhasználó teljes nevét, felhasználónevét, email címét, telefonszámát és címét. A táblázat legalsó sorában van egy gomb „jelszó módosítása” felirattal.
+A profilom funkció az étteremtulajdonosok szempontjából is ugyanaz, mint a vásárlóknál. Kilistázza a bejelentkezett felhasználó adatait. Egy táblázatba foglalva kilistázza a felhasználó teljes nevét, felhasználónevét, e-mail címét, telefonszámát és címét. A táblázat legalsó sorában van egy gomb „jelszó módosítása” felirattal.
 
 A jelszó módosítás is ugyanúgy működik, mint a vásárlóknál. A „Jelszó módosítása” gombra kattintva megjelenik egy űrlap. Meg kell adni a jelenlegi jelszót, majd az új jelszót és végül meg kell erősíteni az új jelszót. A „Mentés” gombra kattintva megtörténik a jelszó cserélő funkció meghívása. Amennyibben a jelenlegi jelszó helyes, az új jelszó megfelel a kritériumoknak és megegyezik a megerősített jelszóval, megtörténik a jelszó módosítása.
 
 \section{Felhasználói felület megvalósítása AngularJS segítségével}
 
-A felhasználói felületet AngularJs segítségével valósítottam meg. Az app.js fájl tartalmazza az angular kódot. Az alkalmazásom egy single-page application, ami azt jelenti, hogy a weblap folyamatosan kis mennyiségű adatot cserél a szerverrel, tehát nem teljes HTML oldalak töltődnek le a szerverről, hanem egy adott oldal tartalma dinamikusan változik az alkalmazás használata során. A felhasználói felület különböző nézetekből épül fel. A nézetek HTML fájlokban tárolt HTML-kódrészletek. Egy nézet létrehozásához implementálni kell egy kontrollert és definiálni egy állapotot. A kontrollerek feladata a szerverrel való kommunikáció, és az adatok megjelenítése a nézeteken. A \texttt{\$stateProvider} modul kezeli az állapotokat, definiálásuk a .state() metódussal történik. Egy állapot definiálásakor meg kell adni a nevét, az URL-t amire aktiválódik, a HTML fájl elérési útját, amit be kell töltenie, tehát a nézetet, és azt, hogy melyik kontrollert használja. Az \texttt{\$urlRouterProvider} modul \texttt{.otherwise()} metódusa segítségével létrehoztam egy olyan állapotot, ami akkor aktiválódik, ha a hivatkozott URL egyik meglévő állapotra se illeszkedik. Ilyenkor egy hiba üzenetet tartalmazó nézet töltődik be.
+A felhasználói felületet AngularJS segítségével valósítottam meg. Az app.js fájl tartalmazza az Angular kódot. Az alkalmazásom egy single-page application, ami azt jelenti, hogy a weblap folyamatosan kis mennyiségű adatot cserél a szerverrel, tehát nem teljes HTML oldalak töltődnek le a szerverről, hanem egy adott oldal tartalma dinamikusan változik az alkalmazás használata során. A felhasználói felület különböző nézetekből épül fel. A nézetek HTML fájlokban tárolt HTML-kódrészletek. Egy nézet létrehozásához implementálni kell egy kontrollert és definiálni egy állapotot. A kontrollerek feladata a szerverrel való kommunikáció, és az adatok megjelenítése a nézeteken. A \texttt{\$stateProvider} modul kezeli az állapotokat, definiálásuk a \texttt{.state()} metódussal történik. Egy állapot definiálásakor meg kell adni a nevét, az URL-t amire aktiválódik, a HTML fájl elérési útját, amit be kell töltenie, tehát a nézetet és azt, hogy melyik kontrollert használja. Az \texttt{\$urlRouterProvider} modul \texttt{.otherwise()} metódusa segítségével létrehoztam egy olyan állapotot, ami akkor aktiválódik, ha a hivatkozott URL egyik meglévő állapotra se illeszkedik. Ilyenkor egy hiba üzenetet tartalmazó nézet töltődik be.
 
-Az angular fájlban definiálok egy \texttt{.run} blokkot is, amelyben a sütik értékeit frissítem, és biztosítom, hogy amíg a felhasználó nem jelentkezett be, csak a bejelentkező, és regisztráló felületet érhesse el.
+Az angular fájlban definiálok egy \texttt{.run} blokkot is, amelyben a sütik értékeit frissítem, és biztosítom, hogy amíg a felhasználó nem jelentkezett be, csak a bejelentkező és regisztráló felületet érhesse el.
 
 A fejezet további részében az állapotokat és kontrollereket fogom részletezni.
 
@@ -197,7 +191,7 @@ Ahogy már korábban leírtam egy állapot definiálásakor meg kell adni a nev�
 })
 \end{cpp}
 
-A fenti állapot a \texttt{/static/partials/home.html} nézetet tölti be a \texttt{loginController} segítségével, ami a bejelentkező felületet. A \texttt{loginController} a felhasználók be és ki jelentkezését, illetve az autentikációt valósítja meg. Az autentikáció megvalósításához létrehoztam egy \textit{service}-t, az \texttt{AuthenticationService}-t. Ezt a \texttt{service.js} fájl valósítja meg. Az hitelesítése folyamata során a kontroller meghívja az \texttt{AuthenticationService} login metódusát, és paraméterként átadja neki a felhasználó által megadott felhasználónevet és jelszót. A service a kapott adatokat elküldi a szervernek, és várja a választ. A szerver elvégzi a szükséges ellenőrzéseket, lekérdezéseket, token generálást, és választ küld a \textit{service}-nek. A \textit{service} a kapott választ továbbítja a kontroller felé. A kontroller megvizsgálja a választ, ha nem 200-as státuszkódot kap, akkor visszatér egy hibaüzenettel viszont, ha a 200-as státuszkódot kapott a hitelesítés sikeres volt, meghívja az \texttt{AuthenticationService} \texttt{SetCredentials} metódusát és át adja neki a felhasználó nevét, jelszavát és típusát, majd betölti a \texttt{/startpage} nézetet. A service \texttt{SetCredentials} függvénye egy \texttt{\$rootScope} változónak dictionary-ként értékül adja a kapott adatokat és a szerver által generált tokent, majd értékül adja a változót egy sütinek.
+A fenti állapot a \texttt{/static/partials/home.html} nézetet tölti be a \texttt{loginController} segítségével, ami a bejelentkező felület. A \texttt{loginController} a felhasználók be és ki jelentkezését, illetve az autentikációt valósítja meg. Az autentikáció megvalósításához létrehoztam egy \textit{service}-t, az \texttt{AuthenticationService}-t. Ezt a \texttt{service.js} fájl valósítja meg. A hitelesítési folyamat során a kontroller meghívja az \texttt{AuthenticationService} login metódusát, és paraméterként átadja neki a felhasználó által megadott felhasználónevet és jelszót. A service a kapott adatokat elküldi a szervernek, és várja a választ. A szerver elvégzi a szükséges ellenőrzéseket, lekérdezéseket, token generálást és választ küld a \textit{service}-nek. A \textit{service} a kapott választ továbbítja a kontroller felé. A kontroller megvizsgálja a választ, ha nem 200-as státuszkódot kap, akkor visszatér egy hibaüzenettel. Ha 200-as státuszkódot kapott a hitelesítés sikeres volt, meghívja az \texttt{AuthenticationService} \texttt{SetCredentials} metódusát és át adja neki a felhasználó nevét, jelszavát és típusát, majd betölti a \texttt{/startpage} nézetet. A service \texttt{SetCredentials} függvénye egy \texttt{\$rootScope} változónak dictionary-ként értékül adja a kapott adatokat és a szerver által generált tokent, majd értékül adja a változót egy sütinek.
 
 Kijelentkezés esetén a kontroller az \texttt{AuthenticationService} \texttt{ClearCredentials()} metódusát hívja meg, ami törli a bejelentkezéskor létrehozott sütit.
 
@@ -211,7 +205,7 @@ A \texttt{/startpage} URL-re hivatkozva a \texttt{/static/partials/startpage.htm
 
 \noindent \texttt{/registration}
 
-A \texttt{/registration} URL-re való hivatkozás a \texttt{/static/partials/registration.html} nézetet tölti be a userController segítségével. A kontroller betölti a regisztrációs felületet, a felhasználó felviszi az adatait, amiket a kontroller továbbít a szerver felé.
+A \texttt{/registration} URL-re való hivatkozás a \texttt{/static/partials/registration.html} nézetet tölti be a \texttt{userController} segítségével. A kontroller betölti a regisztrációs felületet, a felhasználó felviszi az adatait, amiket a kontroller továbbít a szerver felé.
 
 \bigskip
 
