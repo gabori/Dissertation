@@ -1,31 +1,10 @@
 \chapter{Éttermi nyilvántartás}
 
-%Itt ki kell majd fejteni, hogy melyek azok a dolgok, amiket egy étteremnek nyilván kell tartania. Ebben a részben még nem kell belemenni a technikai részletekbe, hanem azt kell körüljárni, hogy mi a konkrét problémakör, annak mely részeire fog koncentrálni a dolgozat további része.
-
-%Elterjedt megoldások:
-
-%* Ebben a részben össze kell szedni, hogy milyen elérhető megoldások vannak az éttermek számára.
-%* Itt érdemes minél több elérhető megoldást összeszedni, és ha lehet diagramokat, összehasonlító táblázatokat is készíteni hozzá.
-%* A bemutatott megoldásokat majd mindenképpen be is kell hivatkozni.
-
-% TODO: Összeszedni táblázatba a funkciókat.
-
-%Pl.:
-
-%program neve | felhasználókezelés | profil | könyvelés | feladatkezelés | készletnyilvántartás |
-
-%profil: általános webshop ... teljesen egyedi, éttermekre szabott.
-%feladatkezelés: pénztárgép szoftver is-e egyben? Mennyire
-
-%Kb. 10 leginkább elterjedt program.
-
-% \section{Éttermi nyilvántartás}
-
 Az éttermi nyilvántartás egy roppantul összetett problémakör. Az ilyen szoftverek tervezésénél figyelembe kell venni, hogy nincs két egyforma vendéglátó egység, tehát a szoftvert mindig az adott vállalkozáshoz kell igazítani. Nyilván kell tartani a rendeléseket, a raktárkészletet, a felhasználókat, törzsvendégek kezelését. A szoftverrel szemben elvárás, hogy megkönnyítse a szoftverrel dolgozók munkáját, átláthatóvá tegye az üzletvezetők számára az üzlet menetét és az ellenőrzést. Szintén elvárás, hogy könnyen kezelhető és rugalmasan bővíthető legyen.
 
 \subsection{Rendelésnyilvántartás}
 
-Rendelések esetén számos adatot nyilván kell tartani. Fontos, hogy ki rendelt, mikor, melyik étteremből, mit, mennyit és mivel fizetett. Menedzselni kell futárszolgálatot, betartani a kiszállítási időt. Biztosítani kell a vásárlók számára pontos leírást az ételekről, választási lehetőséget a fizetési lehetőségek között, estleg vegyes fizetési lehetőségeket egy számlán belül.
+Rendelések esetén számos adatot nyilván kell tartani. Fontos, hogy ki rendelt, mikor, melyik étteremből, mit, mennyit és mivel fizetett. Menedzselni kell a futárszolgálatot, betartani a kiszállítási időt. Biztosítani kell a vásárlók számára egy pontos leírást az ételekről, választási lehetőséget a fizetési lehetőségek között, estleg vegyes fizetési lehetőségeket egy számlán belül.
 
 \subsection{Készletnyilvántartás}
 
@@ -92,11 +71,11 @@ Aldelo for Restaurants & nincs & teljesen egyedi & nincs & igen & igen \\
 \label{tab:kulfoldi}
 \end{table}
 
-A táblázat első oszlopában a szoftver neve szerepel. A második oszlopban a felhasználókezelés, ami azt takarja, hogy a szoftver funkció között van e vendég nyilvántartás, tehát, hogy lehet e regisztrálni a vendégeket. A harmadik oszlopban a szoftver profilját, arculatát jellemeztem. A negyedik oszlopban azt vizsgáltam, hogy van e integrált könyvelés funkció az alkalmazásban. Az 5. oszlopban feladatkezelés alatt azt értettem, hogy a pénztárgép funkcióit is a szoftver látja e el. A hatodik azaz utolsó oszlopban a szoftver raktár készlet kezelését vizsgáltam.
+A táblázat első oszlopában a szoftver neve szerepel. A második oszlopban a felhasználókezelés, ami azt takarja, hogy a szoftver funkció között van-e vendég nyilvántartás, tehát, hogy lehet-e regisztrálni a vendégeket. A harmadik oszlopban a szoftver profilját, arculatát jellemeztem. A negyedik oszlopban azt vizsgáltam, hogy van-e integrált könyvelés funkció az alkalmazásban. Az 5. oszlopban feladatkezelés alatt azt értettem, hogy a pénztárgép funkcióit is a szoftver látja-e el. A hatodik azaz utolsó oszlopban a szoftver raktár készlet kezelését vizsgáltam.
 
-Az én alkalmazásom a vásárlók teljes körű nyilvántartására, rendelések nyilvántartására és az ezekből alkotott kimutatásokra, statisztikákra fog összpontosulni. Az alkalmazásom célja, a házhoz szállítást nyújtó éttermek összegyűjtése, az üzletvezetők feladatának, éttermek menedzselésének megkönnyítése, és a rendelők számára a minél egyszerűbb ételrendelés biztosítása. Az hasonló célú és felépítésű szoftvereket online ételrendelési portálnak szokták nevezni.
+Az én alkalmazásom a vásárlók teljes körű nyilvántartására, rendelések nyilvántartására és az ezekből alkotott kimutatásokra, statisztikákra fog összpontosítani. Az alkalmazásom célja, a házhoz szállítást nyújtó éttermek összegyűjtése, az üzletvezetők feladatának, éttermek menedzselésének megkönnyítése, és a rendelők számára a minél egyszerűbb ételrendelés biztosítása. Az hasonló célú és felépítésű szoftvereket online ételrendelési portálnak szokták nevezni.
 
-A magyar piacon jelenleg három online ételrendelési portál óriás van, a NetPincér, a Pizza.hu és a Falatozz.hu. Ezek a portálok közvetítő szerepet játszanak a megrendelő és a kiszállítást lebonyolító étterem között. Az éttermeknek ez egy nagyon jó marketing fogás, segít nekik az ügyfélkör kibővítésében, a megrendelőknek, meg leegyszerűsítik az online ételrendelést, azzal, hogy egy oldalon megtalálják a környéken lévő összes vendéglátó egység kínálatát.
+A magyar piacon jelenleg három online ételrendelési portál óriás van, a NetPincér, a Pizza.hu és a Falatozz.hu. Ezek a portálok közvetítő szerepet játszanak a megrendelő és a kiszállítást lebonyolító étterem között. Az éttermeknek ez egy nagyon jó marketing fogás, segít nekik az ügyfélkör kibővítésében, a megrendelőknek pedig leegyszerűsítik az online ételrendelést, azzal, hogy egy oldalon megtalálják a környéken lévő összes vendéglátó egység kínálatát.
 
 Az alkalmazásom abban különbözik ezektől az online étrendelési portáloktól, hogy míg ezek a portálok úgymond csak közvetítő szerepet vállalnak, nem feltétlenül tartják nyilván az adatokat, a partner cégek egyébként is rendelkeznek egy saját étterem nyilvántartói rendszerrel és általában webes rendelő felülettel is. Addig az általam készített alkalmazás biztosítja a rendelésnyilvántartást, a vásárlónyilvántartást és a szerzett adatokból olyan statisztikákat, kimutatásokat állít elő, melyek elengedhetetlenek egy sikeres vállalkozáshoz.
 
@@ -114,22 +93,22 @@ Az ajánlási feladat megoldása egy olyan algoritmus, ami meghatározza $\hat{f
 
 \subsection{Algoritmusok osztályozása}
 
-Ezeket az algoritmusokat több féle szempont szerint osztályozhatjuk. Létezik osztályzás az algoritmusban használt megközelítés alapján, ide tartoznak a gráf alapú módszerek, a gépi tanulás modellt használó eljárások, és például a hasonlóságon alapuló módszerek.
+Ezeket az algoritmusokat többféle szempont szerint osztályozhatjuk. Létezik osztályzás az algoritmusban használt megközelítés alapján, ide tartoznak a gráf alapú módszerek, a gépi tanulás modellt használó eljárások, és például a hasonlóságon alapuló módszerek.
 
-Lehet osztályozni felhasznált információk alapján is. Ebbe a csoportba tartozik a content based methods, amikor a felhasználó korábbi értékelései alapján történik az ajánlatétel. Illetve a collaborative filtering, a kapott inputhoz hasonló adatok is felhasználásra kerülnek az ajánlattétel során. Ennek két típusa van a user-based, amikor a cél felhasználó ízléséhez hasonló ízlésű felhasználók szavazatait is figyelembe veszik az ajánlattételkor. És az item-based algoritmusok, amikor a választott termékhez hasonló termékeket ajánlj fel a rendszer.
+Lehet osztályozni felhasznált információk alapján is. Ebbe a csoportba tartozik a content based methods, amikor a felhasználó korábbi értékelései alapján történik az ajánlattétel, illetve a collaborative filtering, amelyben a kapott inputhoz hasonló adatok is felhasználásra kerülnek az ajánlattétel során. Ennek két típusa van, a user-based, amikor a cél felhasználó ízléséhez hasonló ízlésű felhasználók szavazatait is figyelembe veszik az ajánlattételkor. A másik típus az item-based algoritmusok, amikor a választott termékhez hasonló termékeket ajánlja fel a rendszer.
 
 \subsection{Ontológia}
 
-Az ontológiák használata megoldást biztosít, az alkalmazások számára, hogy fel tudják kutatni az adatbázisok belső jelentéseit. Az adatbázisokban az egyes fogalmak más-más jelentéssel bírhatnak. Egy olyan programnak, amely információt használ fel ezekből az adatbázisokból, tudnia kell, hogy az általa alkalmazott fogalmak ugyanazt a dolgot jelentik.
+Az ontológiák használata megoldást biztosít az alkalmazások számára, hogy fel tudják kutatni az adatbázisok belső jelentéseit. Az adatbázisokban az egyes fogalmak más-más jelentéssel bírhatnak. Egy olyan programnak, amely információt használ fel ezekből az adatbázisokból, tudnia kell, hogy az általa alkalmazott fogalmak ugyanazt a dolgot jelentik.
 
-Az ontológia a fogalomalkotás, vagy fogalomfeltérképezés specifikációját, azaz a körülírását, megkülönböztetését jelenti. Az ontológia egy formális és explicit leírása egy elosztott elképzelésnek. 
+Az ontológia a fogalomalkotás vagy fogalomfeltérképezés specifikációját, azaz a körülírását, megkülönböztetését jelenti. Az ontológia egy formális és explicit leírása egy elosztott elképzelésnek. 
 
 A mesterséges intelligencia területén ontológiákat a tudás megosztása és újbóli felhasználása céljából hoznak létre. A tudás átadása úgy történik, hogy különböző tulajdonságokat rendelünk az egyes osztályokhoz, és lehetővé tesszük, hogy a leszármazottjaik örököljék ezeket a tulajdonságokat.
 
-Az ontológiák egyik legismertebb változata a Pizza ontológia, amit a Manchesteri Egyetemen fejlesztettek ki tanulmányi célokból. Ez egy egyszerű, könnyen értelmezhető ontóliga. Nagy mennyiségű relációt ki lehet fejezni a pizzákhoz rendelt feltét tulajdonságok alapján.
+Az ontológiák egyik legismertebb változata a pizza ontológia, amit a Manchesteri Egyetemen fejlesztettek ki tanulmányi célokból. Ez egy egyszerű, könnyen értelmezhető ontóliga. Nagy mennyiségű relációt ki lehet fejezni a pizzákhoz rendelt feltét tulajdonságok alapján.
 
-A pizza ontológia segítségével meg lehetne valósítani egy ajánlórendszert az alkalmazásomban. A megvalósításhoz az adatbázis minimális bővítésére lenne szükség, a rendelésekből kinyert adatok, felhasználói szokások segítségével könnyen, és hatékonyan meg lehetne valósítani.
+A pizza ontológia segítségével meg lehetne valósítani egy ajánlórendszert az alkalmazásomban. A megvalósításhoz az adatbázis minimális bővítésére lenne szükség, a rendelésekből kinyert adatok, felhasználói szokások segítségével könnyen és hatékonyan meg lehetne valósítani.
 
-Az ajánlórendszer működése a pizza ontológián alapulna, amit OWL segítségével tudnám definiálni és példányosítani. Az OWL azaz Web Ontology Language, megkönnyíti a webes tartalmak értelmezését kiegészítő szókincs használatával, és formális jelentéstannal. Minden egyes pizza a root pizzából származik, a feltétek széles körében lehet válogatni. Minél több azonos feltét van két különböző pizzán annál nagyobb valószínűséggel fogja őket ajánlani a felhasználónak. Amennyiben a felhasználó olyan pizzákat rendel, melyeken hús alapú feltét is szerepel, a rendszer nem fog vegetáriánus pizzát ajánlani neki.
+Az ajánlórendszer működése a pizza ontológián alapulna, amit OWL segítségével tudnék definiálni és példányosítani. Az OWL, azaz Web Ontology Language, megkönnyíti a webes tartalmak értelmezését kiegészítő szókincs használatával és formális jelentéstannal. Minden egyes pizza egy ős pizzából származik, a feltétek széles körében lehet válogatni. Minél több azonos feltét van két különböző pizzán, annál nagyobb valószínűséggel fogja őket ajánlani a felhasználóknak. Amennyiben a felhasználó olyan pizzákat rendel, melyeken hús alapú feltét is szerepel, a rendszer nem fog vegetáriánus pizzát ajánlani neki.
 
-A fentiekben leírt ajánlórendszer megvalósítása lenne az első lépés az alkalmazásom továbbfejlesztésében. 
+A fentiekben leírt ajánlórendszer megvalósítása lesz az első lépés az alkalmazásom továbbfejlesztésében. 
