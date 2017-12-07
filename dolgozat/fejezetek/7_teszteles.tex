@@ -1,34 +1,45 @@
 \chapter{Tesztelés}
 
-Miden szoftverben van hiba. A szoftvereket emberek fejlesztik, és az emberek hibáznak, ezért van szükség a programok tesztelésére. A szoftver termékben lévő hibák nagy részét még a végleges üzembe helyezés előtt ki lehet szűrni a tesztek segítségével. A tesztelések segítségével növelhetjük a program megbízhatóságát, minőségét. Teszteléssel se lehet minden hibát kiszűrni, ugyanis nagyobb rendszereknél nem lehetséges minden bemenetet tesztelni. Érdemese a teszteléseket a szoftver életciklusának korai szakaszában elkezdeni, mert minél hamarabb találjuk meg a hibát annál költséghatékonyabb a javítása.
+Miden szoftverben van hiba. A szoftvereket emberek fejlesztik, és az emberek hibáznak, ezért van szükség a programok tesztelésére. A szoftver termékben lévő hibák nagy részét még a végleges üzembe helyezés előtt ki lehet szűrni a tesztek segítségével. A tesztelések segítségével növelhetjük a program megbízhatóságát, minőségét. Teszteléssel se lehet minden hibát kiszűrni, ugyanis nagyobb rendszereknél nem lehetséges minden bemenetet tesztelni. Érdemes a teszteléseket a szoftver életciklusának korai szakaszában elkezdeni, mert minél hamarabb találjuk meg a hibát annál költséghatékonyabb a javítása.
 
 Több fajta tesztelési technikát különböztetünk meg. Beszélhetünk specifikáció alapú tesztről, amikor a tesztelő számára nem áll rendelkezésre a forráskód, és a specifikáció alapján készülnek a tesztek. Illetve létezik strukturális tesztelés, amikor egy kész struktúrát tesztelünk, például osztályokat, funkciókat vagy metódusokat.
 
 \section{Tesztelés szintjei}
 
-A tesztelésnek több szintje is van, léteznek teljes rendszer tesztek,	 amikor azt ellenőrzik, hogy a termék megfelel e a specifikációnak. A rendszerteszt már a kész terméket ellenőrzi. A rendszerteszteket gyakran független cég végzi. Fontos, hogy a tesztkörnyezet minél inkább hasonlítson a megrendelő környezetére.
+A tesztelésnek több szintje is van, léteznek teljes rendszer tesztek,	 amikor azt ellenőrzik, hogy a termék megfelel-e a specifikációnak. A rendszerteszt már a kész terméket ellenőrzi. A rendszerteszteket gyakran független cég végzi. Fontos, hogy a tesztkörnyezet minél inkább hasonlítson a megrendelő környezetére.
 
 A tesztelés egy másik szintje az integrációs teszt. Az integrációs teszt az elkészült modulok együttes működését teszteli. Tesztelik a komponensek közti interfészeket, illetve a más rendszerek felé nyújtott interfészeket is.
 
-A tesztelések legalsó a szintje a komponensteszt. A komponensteszt külön-külön teszteli a rendszer egyes komponenseit. Két gyakran használt fajtája van a komponensteszteknek, a modulteszt és a unit-teszt. A modulteszttel általában a nem-funkcionális részeket szokták tesztelni, például, hogy van a memory leak.
+A tesztelések legalsó a szintje a komponensteszt. A komponensteszt külön-külön teszteli a rendszer egyes komponenseit. Két gyakran használt fajtája van a komponensteszteknek, a modulteszt és a unit-teszt. A modulteszttel általában a nem-funkcionális részeket szokták tesztelni, például azt, hogy van e memory leak.
 
 \section{Unit-test}
 
-Az egységteszt a funkciókat teszteli. Ismerjük a metódus visszatérési értékét egy adott bemeneti paraméterre, ha a tényleges visszatérési érték egyezik az elvárt értékkel, akkor a teszt sikeres, különben sikertelen. A unit-tesztek lényege, hogy a szoftverben történt változás utána csak újra le kell futtatni a meglévő egységteszteket, és ha egyik teszt eset se bukik el, akkor a változtatás nem okozod hibát a rendszerben.
+Az egységteszt a funkciókat teszteli. Ismerjük a metódus visszatérési értékét egy adott bemeneti paraméterre, ha a tényleges visszatérési érték egyezik az elvárt értékkel, akkor a teszt sikeres, különben sikertelen. A unit-tesztek lényege, hogy a szoftverben történt változtatás után csak újra le kell futtatni a meglévő egységteszteket, és ha egyik teszt eset se bukik el, akkor a változtatás nem okozott hibát a rendszerben.
 A unit-tesztek egyik nagy előnye, hogy a legtöbb fejlesztő környezet támogatja őket, tehát egyszerű az implementálásuk. A Phyton esetén is van egy egységtesztelő keretrendszer, amire PyUnit néven szoktak hivatkozni.
 
-A PyUnit a JUnit Python nyelvű változat. Támogatja a tesztek automatizálását, összegyűjtésüket gyűjteménybe, és a tesztek függetlenségét. Az alkalmazásom szerveroldalának tesztelésére unit-teszteket használtam.
+A PyUnit a JUnit Python nyelvű változata. Támogatja a tesztek automatizálását, összegyűjtésüket gyűjteménybe, és a tesztek függetlenségét. Az alkalmazásom szerveroldalának tesztelésére unit-teszteket használtam.
 
 \begin{python}
-import unittest
+ from tests.base import BaseTestCase
+from nyilvantarto.user import *
 
-class RestaurantTest(unittest.TestCase):
-    """Test cases for testing the restaurant class"""
-    
-    def test_empty_restaurant(self):
-        # Set the preconditions ...
-        restaurant
-        # Check the postconditions ...
-        self.assertEqual(x, 10)
+
+class UserEmptyTestCase(BaseTestCase):
+ """Test cases for testing the user class"""
+    def test_no_users(self):
+        person_results = query_users()
+        self.assertEqual(person_results, [])
+
+    def test_add_user(self):
+        user_registration(newUser=
+                          {'user_name': 'user_name', 'password': 'name', 'first_name': 'first', 'last_name': 'last',
+                           'phone_number': '06202587854', 'email': 'email', 'city': 'miskolc', 'street': 'fő',
+                           'number': '1'})
+
+        person_results = query_users()
+        self.assertEquals(len(person_results), 1)
+        result = person_results[0]
+        self.assertEquals(result['user_name'], 'user_name')
+
 \end{python}
 
