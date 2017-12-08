@@ -1,0 +1,47 @@
+\documentclass[a4paper,12pt]{article}
+
+% Set margins
+\usepackage[hmargin=3cm, vmargin=3cm]{geometry}
+
+\frenchspacing
+
+% Language packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[magyar]{babel}
+
+% AMS
+\usepackage{amssymb,amsmath}
+
+% Graphic packages
+\usepackage{graphicx}
+
+% Colors
+\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+
+% Enumeration
+\usepackage{enumitem}
+
+% Links
+\usepackage{hyperref}
+
+\linespread{1.2}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\section*{Summary}
+
+\textit{Péter Márk Gábori: Restaurant Management System}
+
+\bigskip
+
+The goal of my thesis work was to create a web application which manages the data of restaurants and orders. Its aim is to provide a clean, user-friendly interface, which helps the users to filter and navigate among the restaurants. A further plan was to implement functions for helping the work of the restaurant owners, the simplification of restaurant management processes.
+
+The application stores the data in an SQL-based database which accessed via SQLAlchemy ORM. I have used the Python/Flask microframework on the server-side and AngularJS for the frontend application.
+
+I have implemented all of the planned functions of the application. In the further development step, I will add recommendation system features. Its details has mentioned in the chapter 2. An other idea is to introduce a material management subsystem. Therefore, the restaurant owners could manage the data of the amount of raw materials. It makes possible to send an alert messages to the owner when some of the amounts has decreased below its critical value. It could also be useful, to implement more statistics and analysis about the orders.
+
+\end{document}
