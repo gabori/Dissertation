@@ -17,7 +17,7 @@ A tesztelések legalsó a szintje a komponensteszt. A komponensteszt külön-kü
 Az egységteszt a funkciókat teszteli. Ismerjük a metódus visszatérési értékét egy adott bemeneti paraméterre, ha a tényleges visszatérési érték egyezik az elvárt értékkel, akkor a teszt sikeres, különben sikertelen. A unit-tesztek lényege, hogy a szoftverben történt változtatás után csak újra le kell futtatni a meglévő egységteszteket, és ha egyik teszt eset se bukik el, akkor a változtatás nem okozott hibát a rendszerben.
 A unit-tesztek egyik nagy előnye, hogy a legtöbb fejlesztő környezet támogatja őket, tehát egyszerű az implementálásuk. A Phyton esetén is van egy egységtesztelő keretrendszer, amire PyUnit néven szoktak hivatkozni.
 
-A PyUnit a JUnit Python nyelvű változata. Támogatja a tesztek automatizálását, összegyűjtésüket gyűjteménybe, és a tesztek függetlenségét. Az alkalmazásom szerveroldalának tesztelésére unit-teszteket használtam.
+A PyUnit a JUnit Python nyelvű változata \cite{python_test}. Támogatja a tesztek automatizálását, összegyűjtésüket gyűjteménybe, és a tesztek függetlenségét. Az alkalmazásom szerveroldalának tesztelésére unit-teszteket használtam.
 
 \begin{python}
  from tests.base import BaseTestCase
@@ -47,6 +47,6 @@ Fentebb látható két teszt példa. Az elsővel azt tesztelem, hogy ha egy üre
 
 \section{Front-end tesztelése}
 
-Az alkalmazásom front-end oldalát AngularJS segítségével valósítom meg. Az AngularJS-be számos olyan funkciót, eszközt építettek, amik megkönnyítik a kódok tesztelését. Az Angular kódok a teszteléséhez ezeket az eszközöket kell használni. Ilyen eszköz például a Jasmine.
+Az alkalmazásom front-end oldalát AngularJS segítségével valósítom meg \cite{angular_test}. Az AngularJS-be számos olyan funkciót, eszközt építettek, amik megkönnyítik a kódok tesztelését. Az Angular kódok a teszteléséhez ezeket az eszközöket kell használni. Ilyen eszköz például a Jasmine.
 
 A Jasmine egy viselkedésvezérelt fejlesztési keretrendszer a JavaScript alapú nyelvek számára. A Jasmine a legnépszerűbb keretrendszer, melyet AngularJS kódok tesztelésére használnak. A Jasmine olyan funkciókat biztosít, melyek segítenek a tesztek struktúrájának kialakításában. Ahogy a tesztek növekednek, egyre fontosabb a jól strukturáltság fenntartása, a Jasmine segít elérni ezt.
