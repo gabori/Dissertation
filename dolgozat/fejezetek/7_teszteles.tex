@@ -1,10 +1,10 @@
-\chapter{Tesztelés}
+\Chapter{Tesztelés}
 
 Miden szoftverben van hiba. A szoftvereket emberek fejlesztik, és az emberek hibáznak, ezért van szükség a programok tesztelésére. A szoftver termékben lévő hibák nagy részét még a végleges üzembe helyezés előtt ki lehet szűrni a tesztek segítségével. A tesztelések segítségével növelhetjük a program megbízhatóságát, minőségét. Teszteléssel se lehet minden hibát kiszűrni, ugyanis nagyobb rendszereknél nem lehetséges minden bemenetet tesztelni. Érdemes a teszteléseket a szoftver életciklusának korai szakaszában elkezdeni, mert minél hamarabb találjuk meg a hibát annál költséghatékonyabb a javítása.
 
 Több fajta tesztelési technikát különböztetünk meg. Beszélhetünk specifikáció alapú tesztről, amikor a tesztelő számára nem áll rendelkezésre a forráskód, és a specifikáció alapján készülnek a tesztek. Illetve létezik strukturális tesztelés, amikor egy kész struktúrát tesztelünk, például osztályokat, funkciókat vagy metódusokat.
 
-\section{Tesztelés szintjei}
+\Section{Tesztelés szintjei}
 
 A tesztelésnek több szintje is van, léteznek teljes rendszer tesztek,	 amikor azt ellenőrzik, hogy a termék megfelel-e a specifikációnak. A rendszerteszt már a kész terméket ellenőrzi. A rendszerteszteket gyakran független cég végzi. Fontos, hogy a tesztkörnyezet minél inkább hasonlítson a megrendelő környezetére.
 
@@ -12,7 +12,7 @@ A tesztelés egy másik szintje az integrációs teszt. Az integrációs teszt a
 
 A tesztelések legalsó a szintje a komponensteszt. A komponensteszt külön-külön teszteli a rendszer egyes komponenseit. Két gyakran használt fajtája van a komponensteszteknek, a modulteszt és a unit-teszt. A modulteszttel általában a nem-funkcionális részeket szokták tesztelni, például azt, hogy van e memory leak.
 
-\section{Unit-test}
+\Section{Unit-test}
 
 Az egységteszt a funkciókat teszteli. Ismerjük a metódus visszatérési értékét egy adott bemeneti paraméterre, ha a tényleges visszatérési érték egyezik az elvárt értékkel, akkor a teszt sikeres, különben sikertelen. A unit-tesztek lényege, hogy a szoftverben történt változtatás után csak újra le kell futtatni a meglévő egységteszteket, és ha egyik teszt eset se bukik el, akkor a változtatás nem okozott hibát a rendszerben.
 A unit-tesztek egyik nagy előnye, hogy a legtöbb fejlesztő környezet támogatja őket, tehát egyszerű az implementálásuk. A Phyton esetén is van egy egységtesztelő keretrendszer, amire PyUnit néven szoktak hivatkozni.
@@ -20,9 +20,8 @@ A unit-tesztek egyik nagy előnye, hogy a legtöbb fejlesztő környezet támoga
 A PyUnit a JUnit Python nyelvű változata \cite{python_test}. Támogatja a tesztek automatizálását, összegyűjtésüket gyűjteménybe, és a tesztek függetlenségét. Az alkalmazásom szerveroldalának tesztelésére unit-teszteket használtam.
 
 \begin{python}
- from tests.base import BaseTestCase
-from nyilvantarto.user import *
-
+from tests.base import BaseTestCase
+from nyilvantarto.user import query_users
 
 class UserEmptyTestCase(BaseTestCase):
  """Test cases for testing the user class"""
@@ -32,20 +31,23 @@ class UserEmptyTestCase(BaseTestCase):
 
     def test_add_user(self):
         user_registration(newUser=
-                          {'user_name': 'user_name', 'password': 'name', 'first_name': 'first', 'last_name': 'last',
-                           'phone_number': '06202587854', 'email': 'email', 'city': 'miskolc', 'street': 'fő',
-                           'number': '1'})
+            {'user_name': 'user_name', 'password': 'name',
+             'first_name': 'first', 'last_name': 'last',
+             'phone_number': '06202587854', 'email': 'email',
+             'city': 'miskolc', 'street': 'f\"o',
+             'number': '1'})
 
         person_results = query_users()
         self.assertEquals(len(person_results), 1)
         result = person_results[0]
         self.assertEquals(result['user_name'], 'user_name')
-
 \end{python}
+
+\newpage
 
 Fentebb látható két teszt példa. Az elsővel azt tesztelem, hogy ha egy üres adatbázisra meghívom a felhasználók lekérdezéséhez szükséges függvényt, akkor egy üres listát ad-e vissza. A teszt sikeresen lefutott. A második tesztben egy új felhasználót viszek fel az adatbázisra, és utána ismét lekérdezem az adatbázisban lévő felhasználókat. Lekérdezés után vizsgálom, hogy egy darab felhasználó van-e a lekérdezés eredményében, illetve, hogy egyezik-e a neve a felvitt felhasználó nevével. Ez a teszt is sikeresen lefutott.
 
-\section{Front-end tesztelése}
+\Section{Front-end tesztelése}
 
 Az alkalmazásom front-end oldalát AngularJS segítségével valósítom meg \cite{angular_test}. Az AngularJS-be számos olyan funkciót, eszközt építettek, amik megkönnyítik a kódok tesztelését. Az Angular kódok a teszteléséhez ezeket az eszközöket kell használni. Ilyen eszköz például a Jasmine.
 

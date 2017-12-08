@@ -11,13 +11,14 @@
 \linespread{1.2}
 
 \begin{document}
+
 \include{cimlap/cimlap}
 
-\pagestyle{myheadings}
-
-\include{feladatkiiras/feladatkiiras}
-
+\cleardoublepage
+\pagenumbering{gobble}
 \tableofcontents
+\cleardoublepage
+\pagenumbering{arabic}
 
 \newpage
 
@@ -32,8 +33,11 @@
 \include{fejezetek/7_teszteles}
 \include{fejezetek/8_osszegzes}
 
+\include{hasznalat/hasznalat}
+
 \include{irodalomjegyzek/irodalom}
 
-% \include{hasznalat/hasznalat}
+\pagestyle{empty}
+\include{feladatkiiras/feladatkiiras}
 
 \end{document}

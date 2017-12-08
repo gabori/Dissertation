@@ -1,6 +1,8 @@
-\chapter{A felhasználói felület}
+\Chapter{A felhasználói felület}
 
-\section{Bejelentkezés/ regisztráció}
+A fejezet a felhasználói felület működését, megjelenítési módját és használatát mutatja be. A következő szakaszok kategóriákra bontva részletezi ezeket.
+
+\Section{Bejelentkezés/regisztráció}
 
 Az alkalmazás használatához érvényes felhasználói fiókra van szükség. Az alkalmazást használó felhasználókat két típusra lehet bontani, vannak az egyszerű userek(vásárlók), akik ételeket tudnak rendelni az adatbázisban szereplő éttermekből, és vannak az étteremtulajdonosok, akik saját éttermüket tudják menedzselni. Az alkalmazás további szolgáltatásainak az igénybevételéhez mindenképp be kell jelentkezni vagy userként, vagy pedig étteremtulajdonosként. Amennyibben a felhasználó most először látogatott el az oldalra, és még nincs felhasználói fiókja, van lehetősége userként regisztrálni magát. Ehhez mindössze egy egyszerű űrlapot kell kitöltenie, ahol többek között meg kell adnia a nevét, elérhetőségét, címét. Abban az esetben, ha valaki étteremtulajdonosként szeretne regisztrálni, meg kell keresni egy e-mail-el az oldal üzemeltetőjét.
 
@@ -11,11 +13,11 @@ Az alkalmazás használatához érvényes felhasználói fiókra van szükség. 
 \label{fig:architecture}
 \end{figure}
 
-\section{Egyszerű user funkciói}
+\Section{Egyszerű felhasználói funkciók}
 
 A továbbiakban az alapfunkciókat aszerint fogom leírni, hogy melyik felhasználói csoport számára érhetők el. A vásárlók által elérhető szolgáltatásokkal kezdem.
 
-\subsection{Éttermek listázása}
+\SubSection{Éttermek listázása}
 
 A vásárlók számára adott egy olyan funkció, hogy ki tudják listázni az adatbázisban szereplő összes éttermet. Az éttermek egymás alatt, egy táblázatban jelennek meg. A táblázatban szerepel az étterem logója, neve, rövid leírása, címe, a várható kiszállítási idő, kiszállítási költség, a minimális rendelés összege és egy gomb, amire kattintva az oldal tovább irányítja a vásárlót az adott étterem étlapjához (\ref{fig:restaurants}. ábra).
 
@@ -23,12 +25,12 @@ A vásárlónak lehetősége van szűrni az éttermeket város szerint, ami seg�
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.5]{kepek/restaurants.png}
+\includegraphics[scale=0.48]{kepek/restaurants.png}
 \caption{Az éttermek listázása}
 \label{fig:restaurants}
 \end{figure}
 
-\subsection{Étlap}
+\SubSection{Étlap}
 
 Miután a vásárló kiválasztotta a neki legszimpatikusabb éttermet, az „innen rendelek” gombra kattintva el lehet érni az adott étterem étlapját.
 
@@ -40,12 +42,12 @@ Miután a vásárló kiválasztotta a rendelni kívánt termékeket, és hozzáa
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.5]{kepek/menu.png}
+\includegraphics[scale=0.65]{kepek/menu.png}
 \caption{Kép egy, az alkalmazásban megjelenített étlapról}
 \label{fig:menu}
 \end{figure}
 
-\subsection{Fizetés}
+\SubSection{Fizetés}
 
 A felhasználói felületen a kosár az étlap mellett, jobb oldalon található szintén egy táblázatos megoldással. A hozzáadott termékek neve és ára egymás alatt jelenik meg, egy végösszeggel a táblázat alján (\ref{fig:order}. ábra).
 
@@ -53,7 +55,7 @@ A kosár legalsó sorában egy „fizetés” gomb található. A gombra kattint
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.8]{kepek/order.png}
+\includegraphics[scale=1]{kepek/order.png}
 \caption{A vásárlás tételei összeggel és végösszeggel megjelenítve}
 \label{fig:order}
 \end{figure}
@@ -67,7 +69,7 @@ A kívánt fizetési lehetőség kiválasztása után (\ref{fig:payment}. ábra)
 \label{fig:payment}
 \end{figure}
 
-\subsection{Profilom}
+\SubSection{Profilom}
 
 A profilom funkció kilistázza a bejelentkezett felhasználó adatait. Egy táblázatba foglalva kilistázza a felhasználó teljes nevét, felhasználónevét, e-mail címét, telefonszámát, jutalompontját és címét/címeit. Egy felhasználónak akár több különböző szállítása címe is lehet. A táblázat legalsó sorában van egy gomb „jelszó módosítása” felirattal (\ref{fig:profile}. ábra).
 
@@ -89,9 +91,9 @@ A „Jelszó módosítása” gombra kattintva megjelenik egy űrlap, ahol a fel
 \label{fig:password}
 \end{figure}
 
-\section{Étterem tulajdonos funkciók}
+\Section{Étterem tulajdonos funkciók}
 
-\subsection{Éttermeim}
+\SubSection{Éttermeim}
 
 Az éttermeim funkció kilistázza a felhasználó adatbázisban szereplő éttermeit. Az éttermek táblázatos elrendezésben jelennek meg a felületen. A táblázat minden egyes sora, egy éttermet reprezentál. A táblázat oszlopaiban az éttermek különböző adatai találhatók, többek között az étterem logója, neve, címe. A jobb szélső oszlopban négy gomb található, „Étlap szerkesztése”, „Étterem szerkesztése”, „Rendelések” és a „Statisztikák” (\ref{fig:my_restaurants}. ábra).
 
@@ -102,7 +104,7 @@ Az éttermeim funkció kilistázza a felhasználó adatbázisban szereplő étte
 \label{fig:my_restaurants}
 \end{figure}
 
-\subsection{Étlap szerkesztése}
+\SubSection{Étlap szerkesztése}
 
 Az étlap szerkesztése menüpont kiválasztása után, egy táblázatot fogunk látni az adott étterem által forgalmazott ételekről és ezen ételek adatairól. Az elrendezés hasonló a user oldalon látott étlapok elrendezéséhez.
 
@@ -112,16 +114,16 @@ A táblázat felett egy legördülő menü van, amelynek segítségével a tulaj
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.5]{kepek/new_meal.png}
+\includegraphics[scale=0.6]{kepek/new_meal.png}
 \caption{Új étel hozzáadása}
 \label{fig:new_meal}
 \end{figure}
 
-\subsection{Étel törlése}
+\SubSection{Étel törlése}
 
-Az étteremtulajdonosnak lehetősége van testre szabni az étterme által biztosított kínálatot. Vannak bizonyos ételek, melyeket csak szezonálisan lehet elkészíteni az alapanyag-szükségletük miatt, vagy csak valamilyen oknál fogva úgy dönt a vezetőség, hogy le kell kerülnie az étlapról. Ilyenkor van szükség az étel törlése funkcióra. Az „Étel törlése” gombra kattintva meghívásra kerül az étel törlése funkció, melynek hatására a kiválasztott étel törlődik a megjelenített ételek listájából, és törlődik az adatbázisból is.
+Az étteremtulajdonosnak lehetősége van testre szabni az étterme által biztosított kínálatot. Vannak bizonyos ételek, melyeket csak szezonálisan lehet elkészíteni az alap\-anyag-szükségletük miatt, vagy csak valamilyen oknál fogva úgy dönt a vezetőség, hogy le kell kerülnie az étlapról. Ilyenkor van szükség az étel törlése funkcióra. Az „Étel törlése” gombra kattintva meghívásra kerül az étel törlése funkció, melynek hatására a kiválasztott étel törlődik a megjelenített ételek listájából, és törlődik az adatbázisból is.
 
-\subsection{Étel szerkesztése}
+\SubSection{Étel szerkesztése}
 
 Az étel szerkesztése funkcióval lehetőséget biztosítok az étteremtulajdonos számára, az étlapon szereplő termékek adatainak módosítására. Tehát ha egy adott ételnek megváltozik az ára vagy például az összetétele, akkor nem kell törölni azt, majd az új adatokkal ismét felvinni az adatbázisba. Mindössze rá kell kattintani a szerkeszteni kívánt termék sorában található gombok közül az „Étel szerkesztése” gombra, melynek hatására meghívódik az étel szerkesztése funkció.
 
@@ -134,7 +136,7 @@ Egy űrlapot fogunk látni, ahol a szükséges módosítások elvégzése után,
 \label{fig:edit_meal}
 \end{figure}
 
-\subsection{Étel felvitele}
+\SubSection{Étel felvitele}
 
 Az étel felvitel gombra kattintva egy űrlap fog betöltődni. Az űrlap beviteli mezőkből áll, melyekkel az étlapra felvinni kívánt étel adatait tudjuk elküldeni a szervernek. Meg kell adni többek között az étel nevét, árát és típusát. Amennyiben minden szükséges mezőt kitöltöttünk a „Felvitel” gombra kattintva lehet véglegesíteni a műveletet.
 
@@ -145,33 +147,40 @@ Az étel felvitel gombra kattintva egy űrlap fog betöltődni. Az űrlap bevite
 \label{fig:add_meal}
 \end{figure}
 
-\subsection{Rendelések}
+\SubSection{Rendelések}
 
 Ahogy már említettem, az éttermeim funkció kilistázza a felhasználó adatbázisban szereplő éttermeit. Ilyenkor az éttermek táblázatos formában jelennek meg, minden étterem sorában szerepel egy „Rendelések” feliratú gomb. Erre a gombra kattintva a szerver kilistázza az adott étteremhez tartozó megrendeléseket, tehát azokat a rendeléseket, amiket ebben az étteremben adtak le a vásárlók. A rendelések táblázatos formában jelennek meg a felületen, egy sor egy rendelés. A táblázat oszlopaiban az egyes rendeléshez tartozó rendelési adatok vannak megjelenítve. Az adatok között szerepel a rendelő neve, rendelés időpontja, a megrendelt termékek, a rendelés összege és a fizetési módja.
 
-\subsection{Étterem szerkesztése}
+\SubSection{Étterem szerkesztése}
 
 Egy étteremtulajdonosnak lehetősége lesz az éttermei adatainak módosítására. A szerkesztendő étterem sorában rá kell klikkelni az étterem szerkesztése gombra. Kattintás után megjelenik egy űrlap, amire fel kell vinni a módosítandó adatokat. Az adatok megadását követően a mentés gombbal lehet véglegesíteni a módosításokat (\ref{fig:edit_meal}. ábra).
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.8]{kepek/edit_restaurant.png}
+\includegraphics[scale=0.9]{kepek/edit_restaurant.png}
 \caption{Étterem adatainak szerkesztése}
 \label{fig:edit_restaurnt}
 \end{figure}
 
-\subsection{Étterem hozzáadása}
+\SubSection{Étterem hozzáadása}
 
 Egy étteremtulajdonosnak több étterme is lehet az adatbázisban. Az étterem hozzáadása menüpont alatt van lehetőség egy újabb éttermet felvinni. 
 A menüpontra kattintva egy űrlapot fogunk látni, ahol a beviteli mezők egymás alatt helyezkednek el. Az egyes beviteli mezőkben az étterem különböző adatait lehet megadni. Az étterem nevét, leírását, címét. Ha elkészültünk az adatok megadásával, a „Felvitel” gombbal lehet véglegesíteni ezt a műveletet (\ref{fig:add_restaurant}. ábra).
 
-\subsection{Profilom}
+\begin{figure}
+\centering
+\includegraphics[scale=0.9]{kepek/add_restaurant.png}
+\caption{Étterem hozzáadása}
+\label{fig:add_restaurant}
+\end{figure}
+
+\SubSection{Profilom}
 
 A profilom funkció az étteremtulajdonosok szempontjából is ugyanaz, mint a vásárlóknál. Kilistázza a bejelentkezett felhasználó adatait. Egy táblázatba foglalva kilistázza a felhasználó teljes nevét, felhasználónevét, e-mail címét, telefonszámát és címét. A táblázat legalsó sorában van egy gomb „jelszó módosítása” felirattal.
 
 A jelszó módosítás is ugyanúgy működik, mint a vásárlóknál. A „Jelszó módosítása” gombra kattintva megjelenik egy űrlap. Meg kell adni a jelenlegi jelszót, majd az új jelszót és végül meg kell erősíteni az új jelszót. A „Mentés” gombra kattintva megtörténik a jelszó cserélő funkció meghívása. Amennyibben a jelenlegi jelszó helyes, az új jelszó megfelel a kritériumoknak és megegyezik a megerősített jelszóval, megtörténik a jelszó módosítása.
 
-\section{Felhasználói felület megvalósítása AngularJS segítségével}
+\Section{Felhasználói felület megvalósítása AngularJS segítségével}
 
 A felhasználói felületet AngularJS segítségével valósítottam meg. Az app.js fájl tartalmazza az Angular kódot. Az alkalmazásom egy single-page application, ami azt jelenti, hogy a weblap folyamatosan kis mennyiségű adatot cserél a szerverrel, tehát nem teljes HTML oldalak töltődnek le a szerverről, hanem egy adott oldal tartalma dinamikusan változik az alkalmazás használata során. A felhasználói felület különböző nézetekből épül fel. A nézetek HTML fájlokban tárolt HTML-kódrészletek. Egy nézet létrehozásához implementálni kell egy kontrollert és definiálni egy állapotot. A kontrollerek feladata a szerverrel való kommunikáció, és az adatok megjelenítése a nézeteken. A \texttt{\$stateProvider} modul kezeli az állapotokat, definiálásuk a \texttt{.state()} metódussal történik. Egy állapot definiálásakor meg kell adni a nevét, az URL-t amire aktiválódik, a HTML fájl elérési útját, amit be kell töltenie, tehát a nézetet és azt, hogy melyik kontrollert használja. Az \texttt{\$urlRouterProvider} modul \texttt{.otherwise()} metódusa segítségével létrehoztam egy olyan állapotot, ami akkor aktiválódik, ha a hivatkozott URL egyik meglévő állapotra se illeszkedik. Ilyenkor egy hiba üzenetet tartalmazó nézet töltődik be.
 
@@ -179,7 +188,7 @@ Az angular fájlban definiálok egy \texttt{.run} blokkot is, amelyben a sütik 
 
 A fejezet további részében az állapotokat és kontrollereket fogom részletezni.
 
-\subsection{Állapotok}
+\SubSection{Állapotok}
 
 Ahogy már korábban leírtam egy állapot definiálásakor meg kell adni a nevét, az URL-t amire aktiválódik, a HTML fájl elérési útját, amit be kell töltenie, tehát a nézetet, és azt, hogy melyik kontrollert használja. A következő képpel demonstrálom ezt:
 
@@ -191,7 +200,7 @@ Ahogy már korábban leírtam egy állapot definiálásakor meg kell adni a nev�
 })
 \end{cpp}
 
-A fenti állapot a \texttt{/static/partials/home.html} nézetet tölti be a \texttt{loginController} segítségével, ami a bejelentkező felület. A \texttt{loginController} a felhasználók be és ki jelentkezését, illetve az autentikációt valósítja meg. Az autentikáció megvalósításához létrehoztam egy \textit{service}-t, az \texttt{AuthenticationService}-t. Ezt a \texttt{service.js} fájl valósítja meg. A hitelesítési folyamat során a kontroller meghívja az \texttt{AuthenticationService} login metódusát, és paraméterként átadja neki a felhasználó által megadott felhasználónevet és jelszót. A service a kapott adatokat elküldi a szervernek, és várja a választ. A szerver elvégzi a szükséges ellenőrzéseket, lekérdezéseket, token generálást és választ küld a \textit{service}-nek. A \textit{service} a kapott választ továbbítja a kontroller felé. A kontroller megvizsgálja a választ, ha nem 200-as státuszkódot kap, akkor visszatér egy hibaüzenettel. Ha 200-as státuszkódot kapott a hitelesítés sikeres volt, meghívja az \texttt{AuthenticationService} \texttt{SetCredentials} metódusát és át adja neki a felhasználó nevét, jelszavát és típusát, majd betölti a \texttt{/startpage} nézetet. A service \texttt{SetCredentials} függvénye egy \texttt{\$rootScope} változónak dictionary-ként értékül adja a kapott adatokat és a szerver által generált tokent, majd értékül adja a változót egy sütinek.
+A fenti állapot a \texttt{/static/partials/home.html} nézetet tölti be a \texttt{login\-Control\-ler} segítségével, ami a bejelentkező felület. A \texttt{loginController} a felhasználók be és ki jelentkezését, illetve az autentikációt valósítja meg. Az autentikáció megvalósításához létrehoztam egy \textit{service}-t, az \texttt{AuthenticationService}-t. Ezt a \texttt{service.js} fájl valósítja meg. A hitelesítési folyamat során a kontroller meghívja az \texttt{AuthenticationService} login metódusát, és paraméterként átadja neki a felhasználó által megadott felhasználónevet és jelszót. A service a kapott adatokat elküldi a szervernek, és várja a választ. A szerver elvégzi a szükséges ellenőrzéseket, lekérdezéseket, token generálást és választ küld a \textit{service}-nek. A \textit{service} a kapott választ továbbítja a kontroller felé. A kontroller megvizsgálja a választ, ha nem 200-as státuszkódot kap, akkor visszatér egy hibaüzenettel. Ha 200-as státuszkódot kapott a hitelesítés sikeres volt, meghívja az \texttt{AuthenticationService} \texttt{SetCredentials} metódusát és át adja neki a felhasználó nevét, jelszavát és típusát, majd betölti a \texttt{/startpage} nézetet. A service \texttt{SetCredentials} függvénye egy \texttt{\$rootScope} változónak dictionary-ként értékül adja a kapott adatokat és a szerver által generált tokent, majd értékül adja a változót egy sütinek.
 
 Kijelentkezés esetén a kontroller az \texttt{AuthenticationService} \texttt{ClearCredentials()} metódusát hívja meg, ami törli a bejelentkezéskor létrehozott sütit.
 
@@ -205,13 +214,13 @@ A \texttt{/startpage} URL-re hivatkozva a \texttt{/static/partials/startpage.htm
 
 \noindent \texttt{/registration}
 
-A \texttt{/registration} URL-re való hivatkozás a \texttt{/static/partials/registration.html} nézetet tölti be a \texttt{userController} segítségével. A kontroller betölti a regisztrációs felületet, a felhasználó felviszi az adatait, amiket a kontroller továbbít a szerver felé.
+A \texttt{/registration} URL-re való hivatkozás a \texttt{/static/partials/} \\ \texttt{registration.html} nézetet tölti be a \texttt{userController} segítségével. A kontroller betölti a regisztrációs felületet, a felhasználó felviszi az adatait, amiket a kontroller továbbít a szerver felé.
 
 \bigskip
 
 \noindent \texttt{/restaurant}
 
-A \texttt{/restaurant} URL-re hivatkozva a \texttt{restaurantController} betölti a \texttt{/static/partials/restaurant.html} nézetet. A kontroller lekéri a szervertől az éttermeket. A megjelenített táblázatban biztosítja a városok szerinti szűrést.
+A \texttt{/restaurant} URL-re hivatkozva a \texttt{restaurantController} betölti a \\ \texttt{/static/partials/restaurant.html} nézetet. A kontroller lekéri a szervertől az éttermeket. A megjelenített táblázatban biztosítja a városok szerinti szűrést.
 
 \bigskip
 
@@ -231,7 +240,7 @@ A kontrollerben definiálva van egy \texttt{checkout()} függvény, ami fizetés
 
 \noindent \texttt{/setting-meals}
 
-A \texttt{/setting-meals/:restaurant\_id} URL-re hivatkozva a \texttt{mealsSettingController} betölti a \texttt{/static/partials/setting\_meals.html} nézetet. A kontroller lekéri a szervertől a paraméterként megadott étterem ételkínálatát, és az étterem által forgalmazott ételek típusait. A lekérdezett ételeket egy táblázatban jeleníti meg, ahol ételtípus szerinti szűrési lehetőséget is biztosít.
+A \texttt{/setting-meals/:restaurant\_id} URL-re hivatkozva a \texttt{meals\-Setting\-Control\-ler} betölti a \texttt{/static/partials/setting\_meals.html} nézetet. A kontroller lekéri a szervertől a paraméterként megadott étterem ételkínálatát, és az étterem által forgalmazott ételek típusait. A lekérdezett ételeket egy táblázatban jeleníti meg, ahol ételtípus szerinti szűrési lehetőséget is biztosít.
 
 A kontrollerben definiálva van egy \texttt{removeMeal()} függvény, ami a paraméterként kapott étel objektumot elküldi a szervernek, a szerver törli az adatbázisból, majd visszatér egy státuszkóddal.
 
@@ -239,7 +248,7 @@ A kontrollerben definiálva van egy \texttt{removeMeal()} függvény, ami a para
 
 \noindent \texttt{/add-meal}
 
-Az \texttt{/add-meal} állapot a \texttt{/add-meal/:restaurant\_id} URL-re hivatkozva érhető el. A hivatkozás során a \texttt{mealsAddController} betölti a \texttt{/static/partials/add\_meal.html} nézetet. A kontrollernek egyetlen \texttt{addMeal()} metódusa van, ami az új étel felviteléért felelős. A metódus kap egy étel objektumot, ami a felhasználó által megadott adatokat tartalmazza. A szervernek paraméterként elküldi a kapott objektumot, és a módosítandó étterem azonosítóját. A szerver elvégzi a szükséges adatbázismódosításokat, majd visszatér egy státuszkóddal.
+Az \texttt{/add-meal} állapot a \texttt{/add-meal/:restaurant\_id} URL-re hivatkozva érhető el. A hivatkozás során a \texttt{mealsAddController} betölti a \texttt{/static/partials/} \\ \texttt{add\_meal.html} nézetet. A kontrollernek egyetlen \texttt{addMeal()} metódusa van, ami az új étel felviteléért felelős. A metódus kap egy étel objektumot, ami a felhasználó által megadott adatokat tartalmazza. A szervernek paraméterként elküldi a kapott objektumot, és a módosítandó étterem azonosítóját. A szerver elvégzi a szükséges adatbázismódosításokat, majd visszatér egy státuszkóddal.
 
 \bigskip
 
@@ -251,25 +260,25 @@ Az \texttt{/addRestaurant} URL-en a \texttt{/static/partials/add\_restaurant.htm
 
 \noindent \texttt{/my-orders}
 
-A \texttt{/static/partials/get\_orders.html} nézet a \texttt{/my-orders/:restaurant\_id} URL-en érhető el. A nézet megjelenítését az \texttt{ordersController} végzi. A kontroller lekéri a szervertől a paraméterként kapott étteremben leadott összes rendelést, majd egy táblázatban megjeleníti azokat.
+A \texttt{/static/partials/get\_orders.html} nézet a \texttt{/my-orders/:restaurant\_id} \\ URL-en érhető el. A nézet megjelenítését az \texttt{ordersController} végzi. A kontroller lekéri a szervertől a paraméterként kapott étteremben leadott összes rendelést, majd egy táblázatban megjeleníti azokat.
 
 \bigskip
 
 \noindent \texttt{/my-profile}
 
-A \texttt{/my-profile} URL-re hivatkozva elérhetjük a \texttt{/static/partials/my\_profile.html} nézetet, melyet a \texttt{userProfileController} jelenít meg. A kontroller lekéri a szervertől az aktuális bejelentkezve lévő felhasználó felhasználói adatait.
+A \texttt{/my-profile} URL-re hivatkozva elérhetjük a \texttt{/static/partials/} \\ \texttt{my\_profile.html} nézetet, melyet a \texttt{userProfileController} jelenít meg. A kontroller lekéri a szervertől az aktuális bejelentkezve lévő felhasználó felhasználói adatait.
 
 \bigskip
 
 \noindent \texttt{/edit-profile}
 
-Az \texttt{/edit-profile/:user\_id} URL-re való hivatkozás után a \texttt{userSettingsController} megjeleníti a \texttt{/static/partials/edit\_password.html} nézetet. A kontroller lekéri a szervertől az aktuális bejelentkezve lévő felhasználó felhasználói adatait. A kontrollerben definiálva van egy \texttt{editUser()} metódus, ami paraméterként elküldi a szervernek a lekért felhasználói adatokat, és a felhasználói felületről kapott adatokat. A szerver feldolgozza az adatokat, elvégzi az ellenőrzéseket, és módosítja a felhasználó jelszavát. Sikeres módosítás esetén 200-as státuszkódot küld vissza válaszként.
+Az \texttt{/edit-profile/:user\_id} URL-re való hivatkozás után a \texttt{userSettingsCont\-rol\-ler} megjeleníti a \texttt{/static/partials/edit\_password.html} nézetet. A kontroller lekéri a szervertől az aktuális bejelentkezve lévő felhasználó felhasználói adatait. A kontrollerben definiálva van egy \texttt{editUser()} metódus, ami paraméterként elküldi a szervernek a lekért felhasználói adatokat, és a felhasználói felületről kapott adatokat. A szerver feldolgozza az adatokat, elvégzi az ellenőrzéseket, és módosítja a felhasználó jelszavát. Sikeres módosítás esetén 200-as státuszkódot küld vissza válaszként.
 
 \bigskip
 
 \noindent \texttt{/edit-restaurant}
 
-Az \texttt{editRestaurantController} betölti a \texttt{/static/partials/edit\_restaurant.html} nézetet az \texttt{/edit-restaurant/:restaurant\_id} URL-re hivatkozás után. A kontroller lekéri a szervertől a paraméterként kapott étterem adatait. A kontrollerben definiált \texttt{editRestaurant()} függvény paraméterként elküldi a szervernek a lekérdezett étterem adatait, és a felhasználói felületről kapott módosítandó adatokat. A szerver elvégzi a szükséges ellenőrzéseket és adatbázismódosításokat, majd visszatér egy státuszkóddal.
+Az \texttt{editRestaurantController} betölti a \texttt{/static/partials/} \\ \texttt{edit\_restaurant.html} nézetet az \texttt{/edit-restaurant/:restaurant\_id} URL-re hivatkozás után. A kontroller lekéri a szervertől a paraméterként kapott étterem adatait. A kontrollerben definiált \texttt{editRestaurant()} függvény paraméterként elküldi a szervernek a lekérdezett étterem adatait, és a felhasználói felületről kapott módosítandó adatokat. A szerver elvégzi a szükséges ellenőrzéseket és adatbázismódosításokat, majd visszatér egy státuszkóddal.
 
 \bigskip
 
