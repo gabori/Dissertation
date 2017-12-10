@@ -1,18 +1,24 @@
-\chapter{A rendelések adatainak nyilvántartása}
+\Chapter{A rendelések adatainak nyilvántartása}
 
 Az adatbázis tervezése során az egyik fő célom az volt, hogy könnyen módosítható, illetve kibővíthető legyen a rendszer. Első lépésként a fontosabb egyedeket határoztam meg, majd a köztük lévő kapcsolatokat. A dolgozatom készítése során elkészítettem két kezdetleges adatmodellt, amelyeknek az összefésüléséből megszületett a végleges adatmodell. Az alkalmazás implementálása során számos alkalommal kellett módosítanom az adatbázist.
 
-Az általam tervezett adatmodell egyes táblái és a köztük lévő kapcsolatok \aref{fig:rendeles_sema} ábrán láthatók.
+Az általam tervezett adatmodell egyes táblái és a köztük lévő kapcsolatok \aref{fig:rendeles_sema} ábrán láthatók. Az egyes adattáblák részletes bemutatására a következő szakaszokban kerül sor.
 
 \begin{figure}
-\includegraphics[scale=0.3]{kepek/rendeles_sema.jpg}
+\includegraphics[scale=0.4]{kepek/rendeles_sema.jpg}
 \caption{A rendelések adatait kezelő adatábis sémája}
 \label{fig:rendeles_sema}
 \end{figure}
 
-\section{users}
+\Section{users}
 
 Az online alkalmazásomon keresztül való étel rendeléshez regisztrált felhasználónak kell lenni. Ez a tábla a regisztrált felhasználókról tartalmaz információkat, illetve az adatbázisban lévő éttermek tulajdonosairól. Minden felhasználó rendelkezik egy azonosítóval, egy kereszt egy vezeték és egy felhasználónévvel, jelszóval továbbá egy telefonszámmal, egy email címmel. Mindegyikhez tartozik egy address, illetve abban az esetben ha a felhasználó típusa admin, - tehát étteremtulajdonos - akkor tartozik hozzá egy restaurant is.
+
+\newpage
+
+\noindent A \texttt{users} tábla kötelező mezői:
+
+\bigskip
 
 \begin{tabular}{|p{3cm}|p{10cm}|}
 \hline
@@ -34,12 +40,17 @@ Az online alkalmazásomon keresztül való étel rendeléshez regisztrált felha
 \hline
 \end{tabular}
 
-\section{restaurants}
+\Section{restaurants}
 
 Ez a tábla tartalmazza az éttermeket és a hozzájuk tartozó információkat. A tábla minden bejegyzéséhez tartozik egy address, illetve minden étteremhez tartozik egy user is. Egy étteremhez tartozik egy azonosító, egy név, egy leírás az étteremről, illetve meg kell adni az étteremből való rendelés minimális összegét továbbá a kiszállítás maximális időtartamát. Opcionálisan tartalmazhatja a kiszállítás árát, a kiszállítás minimális idejét illetve az étterem logójának URL címét.
-Kötelező mezők
 
-\begin{tabular}{|p{3cm}|p{10cm}|}
+\bigskip
+
+\noindent A \texttt{restaurants} tábla kötelező mezői:
+
+\bigskip
+
+\begin{tabular}{|p{5cm}|p{8cm}|}
     \hline
     \texttt{restaurant\_id} & Elsődleges kulcs, az étterem azonosítója. \\
     \hline
@@ -53,12 +64,17 @@ Kötelező mezők
     \hline
 \end{tabular}
 
-\section{meals}
+\Section{meals}
 
 Ebben a táblában tárolom az adott éttermek által forgalmazott ételeket, italokat. A táblának egy bejegyzése egy étteremhez tartozik, de egy adott étteremhez több meal is tartozhat. A táblában minden bejegyzéshez tartozik egy azonosító, egy név, egy leírás, a termék ára, a terméket forgalmazó étterem azonosítója, illetve opcionálisan meg lehet adni a termék logójának URL címét.
-Kötelező mezők
 
-\begin{tabular}{|p{3cm}|p{10cm}|}
+\bigskip
+
+\noindent A \texttt{meals} tábla kötelező mezői:
+
+\bigskip
+
+\begin{tabular}{|p{4cm}|p{9cm}|}
     \hline
     \texttt{meal\_id} & Elsődleges kulcs, a termék azonosítója \\
     \hline
@@ -72,12 +88,17 @@ Kötelező mezők
     \hline
 \end{tabular}
 
-\section{addresses}
+\Section{addresses}
 
 Az addresses tábla tartalmazza a felhasználók és az éttermek címéhez tartozó információkat. Mindegyik vagy egy étteremhez vagy egy felhasználóhoz tartozik. Egy felhasználóhoz több cím is tartozhat. Egy címhez mindig tartozik egy azonosító, egy típus(szállítási, vagy lakcím), egy város, egy utca, illetve egy házszám, továbbá vagy egy étterem vagy egy felhasználó azonosító attól függően, hogy étteremhez vagy felhasználóhoz tartozik-e a cím.
-Kötelező mezők
 
-\begin{tabular}{|p{3cm}|p{10cm}|}
+\bigskip
+
+\noindent Az \texttt{addresses} tábla kötelező mezői:
+
+\bigskip
+
+\begin{tabular}{|p{4cm}|p{9cm}|}
     \hline
     \texttt{address\_id} & Elsődleges kulcs, a cím azonosítója. \\
     \hline
@@ -95,10 +116,15 @@ Kötelező mezők
     \hline
 \end{tabular}
 
-\section{orders}
+\Section{orders}
 
 Ez a tábla tartalmazza a rendeléseket. Egy rendeléshez \texttt{order\_meal}-ek tartoznak, ezek tartalmazzák a megrendelt termékek adatait. Minden rendelés tartalmaz egy azonosítót, egy dátumot, egy árat, illetve a rendelést leadó felhasználó azonosítóját.
-Kötelező mezők
+
+\newpage
+
+\noindent Az \texttt{orders} tábla kötelező mezői:
+
+\bigskip
 
 \begin{tabular}{|p{3cm}|p{10cm}|}
 \hline
@@ -112,12 +138,18 @@ Kötelező mezők
 \hline
 \end{tabular}
 
-\section{order\_meals}
+\Section{order\_meals}
 
 Ez a tábla a felhasználó által kosárba helyezett termékekről tartalmaz információkat. Egy \texttt{order\_meal} bejegyzés egy megrendelt termékről tárol adatokat. Minden bejegyzés tartalmaz rendelés azonosítót, ami megadja, hogy egy \texttt{order\_meal} melyik rendeléshez tartozik. Egy rendeléshez több \texttt{order\_meal} is tartozhat. Mindegyeik \texttt{order\_meal}-hez tartozik a rendelés azonosítón kívül egy azonosító, egy darabszám, egy ár, illetve egy termék azonosító.
-Kötelező mezők
 
-\begin{tabular}{|p{3cm}|p{10cm}|}
+\bigskip
+
+\noindent Az \texttt{order\_meals} tábla kötelező mezői:
+
+\bigskip
+
+\begin{tabular}{|p{4.5cm}|p{8.5cm}|}
+    \hline
     \texttt{order\_meals\_id} & Elsődleges kulcs, az order\_meal azonosítója. \\
     \hline
     \texttt{order\_meals\_quantity} & A megrendelt termék darabszáma. \\
@@ -130,11 +162,18 @@ Kötelező mezők
     \hline
 \end{tabular}
 
-\section{payments}
+\Section{payments}
 
 Ebben a táblában az éttermek által biztosított fizetési lehetőségeket tárolom. Minden bejegyzéséhez tartozik egy étterem azonosító, amivel meg lehet adni, hogy az adott fizetési lehetőségek melyik étteremhez tartoznak. Egy ilyen bejegyzés tartalmazza az imént említett étterem azonosítót, továbbá egy azonosítót, és különböző fizetési lehetőségeket, melyeknek az értéke 0, ha az adott étteremnél nem lehet ilyen módon fizetni, illetve 1 ha lehet.
 
-\begin{tabular}{|p{3cm}|p{10cm}|}
+\newpage
+
+\noindent A \texttt{payments} tábla kötelező mezői:
+
+\bigskip
+
+\begin{tabular}{|p{4cm}|p{9cm}|}
+    \hline
     \texttt{payment\_id} & Elsődleges kulcs, a payment azonosítója. \\
     \hline
     \texttt{cash} & Készpénzes fizetési lehetőség. \\
@@ -149,11 +188,11 @@ Ebben a táblában az éttermek által biztosított fizetési lehetőségeket t�
     \hline
 \end{tabular}
 
-\section{Back-End}
+\Section{Back-End}
 
 A szerveroldalon egy többrétegű struktúrát hoztam létre. Ebben a fejezetben a két felső réteget, a Flask alkalmazást és a nyilvántartó csomagot fogom részletezni.
 
-\subsection{Nyilvántartó csomag}
+\SubSection{Nyilvántartó csomag}
 
 A nyilvántartó csomagban lévő metódusok végzik a lekérdezéseket, ezeket a metódusokat hívom meg a Flaskos rétegben. A nyilvántartó csomag egy absztrakciós szintet biztosít, elfedi az alsóbb rétegek technikai részleteit. A közbenső réteg bevezetésének számos előnye volt. Rövidebb és átláthatóbb lett a Flask fájl, mivel a lekérdezések, ellenőrzések és eredmények feldolgozása átkerült a nyilvántartó csomag függvényeibe. Így a Flask szinte csak a paraméterek lekérdezésével és a válaszok előállításával foglalkozik.
 
@@ -161,13 +200,13 @@ A nyilvántartó csomag egyik legnagyobb előnye a későbbi továbbfejlesztési
 
 A nyilvántartó library 6 Python fájlt tartalmaz, melyekben különböző függvények lettek implementálva. A továbbiakban ezeket a fájlokat és függvényeket fogom ismertetni.
 
-\subsection{\texttt{Adddress.py}}
+\SubSection{\texttt{Adddress.py}}
 
 \begin{itemize}
     \item \texttt{query\_cities()}: Az adatbázisban található éttermekhez rendelt címeket kérdezi le. Dictionary-k listájaként a címek város komponensét adja vissza.
 \end{itemize}
 
-\subsection{\texttt{Meal.py}}
+\SubSection{\texttt{Meal.py}}
 
 \begin{itemize}
     \item \texttt{query\_meals(restaurant\_id)}:
@@ -186,7 +225,7 @@ A nyilvántartó library 6 Python fájlt tartalmaz, melyekben különböző füg
         A paraméterként kapott felhasználónévvel megegyező felhasználónevű user-t lekérdezi az adatbázisból. A Meal táblából lekérdezi azokat az ételeket étel típus szerint csoportosítva, melyeknek az étterem azonosítója megegyezik a paraméterként kapott azonosítóval. Az Order adatbázis táblából lekérdezi azokat a rendeléseket, melyeknél az étterem azonosító megegyezik a kapott azonosítóval. A lekérdezések eredményének segítségével összeszámolja, hogy a paraméterként kapott azonosítóval rendelkező étteremben leadott rendelésekben hány darab van a különböző ételtípusokból. Az eredményt a függvény dictionary-k listájaként adja vissza.
 \end{itemize}
 
-\subsection{\texttt{Order.py}}
+\SubSection{\texttt{Order.py}}
 
 \begin{itemize}
 \item \texttt{checkout\_order(newOrder)}:
@@ -197,7 +236,7 @@ Lekérdezi az adatbázisban található összes rendelést, az eredményt dictio
 Az adatbázisból lekérdezi a paraméterként kapott felhasználónévvel megegyező nevű felhasználót, és a kapott étterem azonosítóval egyező azonosítójú éttermet. Továbbá lekérdezi az Order táblából azokat a rendeléseket, melyeknek az étterem azonosítója megegyezik a kapott azonosítóval. A lekérdezések eredményéből összeállít egy listát, amiben dictionary-k vannak tárolva, és ezt adja vissza eredményként.
 \end{itemize}
 
-\subsection{\texttt{Payment.py}}
+\SubSection{\texttt{Payment.py}}
 
 \begin{itemize}
 \item \texttt{query\_payments(restaurant\_id)}:
@@ -206,7 +245,7 @@ Lekérdezi az adatbázisból azokat a fizetési módokat, melyek étterem azonos
 A paraméterként kapott felhasználónévvel megegyező felhasználónevű user-t lekérdezi az adatbázisból. A PaymentTable táblából azt a bejegyzést, amelyiknek az étterem azonosítója megegyezik a paraméterben kapottal. A függvény összeszámolja, hogy az adott étteremben leadott rendelések során milyen gyakorisággal választották az egyes fizetési módokat. Az eredményt dictionary-k listájaként adja vissza.
 \end{itemize}
 
-\subsection{\texttt{Restaurant.py}}
+\SubSection{\texttt{Restaurant.py}}
 
 \begin{itemize}
 \item \texttt{query\_restaurants()}:
@@ -225,7 +264,7 @@ Lekérdezi azt a felhasználót, amelyikhez hozzá van rendelve a paraméterkén
 Az adatbázisból lekérdezi a paraméterként kapott azonosítójú éttermet és a hozzárendelt címet. Az adatokat egy dictionary-ben adja vissza.
 \end{itemize}
 
-\subsection{\texttt{User.py}}
+\SubSection{\texttt{User.py}}
 
 \begin{itemize}
     \item \texttt{query\_user\_by\_name(newUser)}:
@@ -233,22 +272,22 @@ A paraméterként kapott felhasználónevű felhasználót lekérdezi és vissza
 \item \texttt{user\_registration(newUser)}:
 A paraméterként kapott adatokból létrehoz egy új User objektumot, és menti az adatbázisban. Egy Address objektumut is létrehoz a kapott adatokból, és hozzá rendeli a létrehozott felhasználót. 
 \item \texttt{query\_users()}:
-Az adatbázisban lévő összes felhasználót lekérdezi, és egy dictionary-ket tartalmazó listában adja vissza őket.
+Az adatbázisban lévő összes felhasználót lekérdezi, és egy dic\-ti\-o\-nary-ket tartalmazó listában adja vissza őket.
 \item \texttt{edit\_user(params)}:
 A paraméterként kapott felhasználónevű felhasználót lekérdezi, majd ellenőrzi, hogy a paraméterként kapott jelszó egyezik-e a lekérdezett felhasználó jelszavával. Ha egyezik, módosítja a felhasználó jelszavát, menti az adatbázist, status változót 200-ra állítja és visszatér vele. Amennyiben nem egyezik, a status változót 401-re állítja és visszatér vele.
 \item \texttt{query\_user\_data(username)}:
-A paraméterként kapott felhasználónevű felhasználót lekérdezi, majd a hozzá tartozó címeket is. A kapott eredményeket dictionary-k listájában adja vissza.
+A paraméterként kapott felhasználónevű felhasználót lekérdezi, majd a hozzá tartozó címeket is. A kapott eredményeket dic\-ti\-o\-nary-k listájában adja vissza.
 \item \texttt{user\_login(current\_user)}:
-Lekérdezi az adatbázisban található összes felhasználót, majd egy for ciklussal végig iterál a kapott eredményen. A ciklus magban vizsgálja, hogy a paraméterként kapott felhasználónévvel talál-e megegyezőt, ha igen, akkor megvizsgálja a szintén paraméterként kapott jelszó helyességét is. Deklarál egy payload dictionary-t a felhasználónévből, azonosítóból és egy generált számsorból. A JWT encode függvényének meghívásával létrehoz egy tokent, az encode paraméterként megkapja a payload-ot és egy titkos kulcsot. Az autentikációhoz szükséges adatokat a \texttt{login\_user} dictionary-ban tárolja, és sikeres azonosítás esetén ezzel tér vissza. Sikertelen bejelentkezés esetén a status változó értékét 202-re állítja és azzal tér vissza.
+Lekérdezi az adatbázisban található összes felhasználót, majd egy for ciklussal végig iterál a kapott eredményen. A ciklus magban vizsgálja, hogy a paraméterként kapott felhasználónévvel talál-e megegyezőt, ha igen, akkor megvizsgálja a szintén paraméterként kapott jelszó helyességét is. Deklarál egy payload dic\-ti\-o\-nary-t a felhasználónévből, azonosítóból és egy generált számsorból. A JWT encode függvényének meghívásával létrehoz egy tokent, az encode paraméterként megkapja a payload-ot és egy titkos kulcsot. Az autentikációhoz szükséges adatokat a \texttt{login\_user} dictionary-ban tárolja, és sikeres azonosítás esetén ezzel tér vissza. Sikertelen bejelentkezés esetén a status változó értékét 202-re állítja és azzal tér vissza.
 \end{itemize}
 
-\section{Flask webalkalmazás}
+\Section{Flask webalkalmazás}
 
 A klienstől érkező kérések feldolgozására az alkalmazás a Flask webes mikro keretrendszert használja. A Flaskos réteg HTTP válaszokat küld a kliensnek, melyeben az adatok JSON formátumúak. A Flaskos réteg és az alsóbb rétegek között van egy közbenső réteg, az általam készített nyilvántartó csomag. A nyilvántartó csomagban lévő metódusok végzik a lekérdezéseket, ezeket a metódusokat hívom meg a Flaskos rétegben. A közbenső réteg bevezetésére a későbbi továbbfejlesztési lehetőségek miatt volt szükség.
 
 A flaskos réteg a kliensoldalról érkező kérések feldolgozását végzi. Amennyiben a kapott kérésben volt paraméter, megvizsgálja annak helyeségét. A válaszhoz szükséges adatok előállítását a nyilvántartó csomag végzi, a Flaskos rétegben csak meg kell hívni a megfelelő metódusokat a szükséges paraméterezéssel. Az előállított adatokból létrehozza a választ, és JSON formátumban továbbítja a kliensnek.
 
-\subsection{\texttt{Index.py}}
+\SubSection{\texttt{Index.py}}
 
 Az index.py fájlban van implementálva a Flaskos réteg. Minden Flaskos függvény a \texttt{route()} dekorátorral van ellátva, ez a dekorátor azt írja le, hogy melyik URL-re hivatkozva fog meghívódni az adott függvény.
 
@@ -289,19 +328,19 @@ A paraméterként kapott ételt törli az adatbázisból. A törlést a \texttt{
 \item \texttt{/myOrders}:
 A paraméterként kapott éteremben leadott összes rendelést kérdezi le, és továbbítja a kliensoldalra. A lekérdezéseket a \texttt{query\_my\_orders()} függvény végzi. A függvényt a username, és a restaurant\_id paraméterekkel kell meghívni. Sikeres lekérdezések után a lekérdezés eredményét küldi el válaszként JSON formátumban.
 \item \texttt{/userData}:
-A jelenleg bejelentkezett felhasználó felhasználói adatait kérdezi le. A lekérdezett eredményt küldi válaszként a kliensnek. A lekérdezéshez a \texttt{query\_user\_data()} függvényt hívja meg username paraméterrel.
+A jelenleg bejelentkezett felhasználó felhasználói adatait kérdezi le. A lekérdezett eredményt küldi válaszként a kliensnek. A lekérdezéshez a \\ \texttt{query\_user\_data()} függvényt hívja meg username paraméterrel.
 \item \texttt{/editUser}:
 Lekérdezi a paraméterként kapott felhasználó adatait, ellenőrzi, hogy a paraméterként kapott jelszó megegyezik e a lekérdezett felhasználó jelszavával, ha igen akkor az adatbázisban módosítja a felhasználó jelszavát. Az params paraméterrel ellátott és meghívott \texttt{edit\_user()} metódus végzi a lekérdezéseket, ellenőrzést, és az adatbázisműveleteket. Sikeres jelszó módosítás esetén 200-as státuskódot küld válaszként a kliensnek.
 \item \texttt{/restaurantData}:
 A paraméterként kapott étterem adatait módosítja a szintén paraméterként kapott adatok alapján, majd véglegesíti az adatbázis módosításokat. Sikeres adatmódosítás esetén 200-as státuszkódot küld a kliensnek. A kapott étterem azonosítót paraméterként adja a \texttt{query\_restaurant\_by\_id()} függvénynek, így lekérdezi a szükséges étterem objektumot az adatbázisból. A params, és restaurant paraméterekkel meghívott \texttt{edit\_restaurant()} metódus pedig elvégzi az ellenőrzéseket és az adatbázisműveleteket.
 \item \texttt{/mealData}:
-Lekérdezi a paraméterként kapott étel adatait, a kapott adatokat küldi válaszként a kliensnek. A lekérdezést a meal\_id paraméterrel ellátott \texttt{query\_meal\_data\_by\_id()} metódus végzi.
+Lekérdezi a paraméterként kapott étel adatait, a kapott adatokat küldi válaszként a kliensnek. A lekérdezést a meal\_id paraméterrel ellátott \\ \texttt{query\_meal\_data\_by\_id()} metódus végzi.
 \item \texttt{/editMeal}:
 Paraméterként kapott adatokkal módosítja egy étel adatait. A paraméterként kapott étel azonosítóval rendelkező ételt lekérdezi, lekérdezi azt az éttermet, amelyik az ételt forgalmazza, és a felhasználót, akié az étterem. Egy jelszó ellenőrzés után módosítja az adatokat. Az \texttt{editMeal()} függvényben meghívásra kerül az \texttt{edit\_meal()} metódus a params paraméterrel, amely elvégzi a fentebb említett műveleteket. Sikeres adatmódosítás esetén 200-as, sikertelen esetén pedig 401-es státuszkódot küld válaszként.
 \item \texttt{/editRestaurant}:
 A paraméterként kapott étterem azonosítóval rendelkező éttermet lekérdezi az adatbázisból, majd a szintén paraméterként kapott adatokkal módosítja azt. Az étterem lekérdezéséhez a \texttt{query\_restaurant\_by\_id(params)} metódust hívja meg az itt látható paraméterezéssel. Az adatbázisműveletek és ellenőrzések elvégzéséhez pedig az \texttt{edit\_restaurant()} függvény kerül meghívásra a params, és a restaurant paraméterekkel. Sikeres adatmódosítás esetén 200-as, sikertelen esetén pedig 401-es státuszkódot küld válaszként.
 \item \texttt{/paymentTypeStat}:
-Lekérdezi, hogy a paraméterként kapott étteremben leadott rendeléseknél a különböző fizetési módok milyen gyakorisággal voltak használva. A lekérdezéseket és a lekérdezett adatok feldolgozását a \texttt{query\_payment\_type\_stat()} metódus végzi, ami username és restaurant\_id paraméterekkel kerül meghívásra. A kapott eredményt fogja tartalmazni a kliensnek küldött válasz.
+Lekérdezi, hogy a paraméterként kapott étteremben leadott rendeléseknél a különböző fizetési módok milyen gyakorisággal voltak használva. A lekérdezéseket és a lekérdezett adatok feldolgozását a \texttt{query\_\-payment\_\-type\_\-stat()} metódus végzi, ami username és restaurant\_id paraméterekkel kerül meghívásra. A kapott eredményt fogja tartalmazni a kliensnek küldött válasz.
 \item \texttt{/mealTypeStat}:
-Lekérdezi, hogy a paraméterként kapott étteremben leadott rendeléseknél milyen gyakorisággal rendelték a különböző ételtípusokat. Username, és restaurant\_id paraméterekkel meghívásra kerül a \texttt{query\_meal\_type\_stat()} metódus, ami elvégzi a lekérdezéseket, és a lekérdezett adatok feldolgozását. A kliens részére megfogalmazott válasz a lekérdezések eredményét fogja tartalmazni.
+Lekérdezi, hogy a paraméterként kapott étteremben leadott rendeléseknél milyen gyakorisággal rendelték a különböző ételtípusokat. Username, és restaurant\_id paraméterekkel meghívásra kerül a \texttt{query\_\-meal\_\-type\_\-stat()} metódus, ami elvégzi a lekérdezéseket, és a lekérdezett adatok feldolgozását. A kliens részére megfogalmazott válasz a lekérdezések eredményét fogja tartalmazni.
 \end{itemize}
