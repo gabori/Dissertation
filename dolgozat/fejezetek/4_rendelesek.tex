@@ -2,6 +2,8 @@
 
 Az adatbázis tervezése során az egyik fő célom az volt, hogy könnyen módosítható, illetve kibővíthető legyen a rendszer. Első lépésként a fontosabb egyedeket határoztam meg, majd a köztük lévő kapcsolatokat. A dolgozatom készítése során elkészítettem két kezdetleges adatmodellt, amelyeknek az összefésüléséből megszületett a végleges adatmodell. Az alkalmazás implementálása során számos alkalommal kellett módosítanom az adatbázist.
 
+\Section{Az alkalmazás adatmodellje}
+
 Az általam tervezett adatmodell egyes táblái és a köztük lévő kapcsolatok \aref{fig:rendeles_sema} ábrán láthatók. Az egyes adattáblák részletes bemutatására a következő szakaszokban kerül sor.
 
 \begin{figure}
@@ -10,7 +12,7 @@ Az általam tervezett adatmodell egyes táblái és a köztük lévő kapcsolato
 \label{fig:rendeles_sema}
 \end{figure}
 
-\Section{users}
+\SubSection{users}
 
 Az online alkalmazásomon keresztül való étel rendeléshez regisztrált felhasználónak kell lenni. Ez a tábla a regisztrált felhasználókról tartalmaz információkat, illetve az adatbázisban lévő éttermek tulajdonosairól. Minden felhasználó rendelkezik egy azonosítóval, egy kereszt egy vezeték és egy felhasználónévvel, jelszóval továbbá egy telefonszámmal, egy email címmel. Mindegyikhez tartozik egy address, illetve abban az esetben ha a felhasználó típusa admin, - tehát étteremtulajdonos - akkor tartozik hozzá egy restaurant is.
 
@@ -40,7 +42,7 @@ Az online alkalmazásomon keresztül való étel rendeléshez regisztrált felha
 \hline
 \end{tabular}
 
-\Section{restaurants}
+\SubSection{restaurants}
 
 Ez a tábla tartalmazza az éttermeket és a hozzájuk tartozó információkat. A tábla minden bejegyzéséhez tartozik egy address, illetve minden étteremhez tartozik egy user is. Egy étteremhez tartozik egy azonosító, egy név, egy leírás az étteremről, illetve meg kell adni az étteremből való rendelés minimális összegét továbbá a kiszállítás maximális időtartamát. Opcionálisan tartalmazhatja a kiszállítás árát, a kiszállítás minimális idejét illetve az étterem logójának URL címét.
 
@@ -64,7 +66,7 @@ Ez a tábla tartalmazza az éttermeket és a hozzájuk tartozó információkat.
     \hline
 \end{tabular}
 
-\Section{meals}
+\SubSection{meals}
 
 Ebben a táblában tárolom az adott éttermek által forgalmazott ételeket, italokat. A táblának egy bejegyzése egy étteremhez tartozik, de egy adott étteremhez több meal is tartozhat. A táblában minden bejegyzéshez tartozik egy azonosító, egy név, egy leírás, a termék ára, a terméket forgalmazó étterem azonosítója, illetve opcionálisan meg lehet adni a termék logójának URL címét.
 
@@ -88,7 +90,7 @@ Ebben a táblában tárolom az adott éttermek által forgalmazott ételeket, it
     \hline
 \end{tabular}
 
-\Section{addresses}
+\SubSection{addresses}
 
 Az addresses tábla tartalmazza a felhasználók és az éttermek címéhez tartozó információkat. Mindegyik vagy egy étteremhez vagy egy felhasználóhoz tartozik. Egy felhasználóhoz több cím is tartozhat. Egy címhez mindig tartozik egy azonosító, egy típus(szállítási, vagy lakcím), egy város, egy utca, illetve egy házszám, továbbá vagy egy étterem vagy egy felhasználó azonosító attól függően, hogy étteremhez vagy felhasználóhoz tartozik-e a cím.
 
@@ -116,7 +118,7 @@ Az addresses tábla tartalmazza a felhasználók és az éttermek címéhez tart
     \hline
 \end{tabular}
 
-\Section{orders}
+\SubSection{orders}
 
 Ez a tábla tartalmazza a rendeléseket. Egy rendeléshez \texttt{order\_meal}-ek tartoznak, ezek tartalmazzák a megrendelt termékek adatait. Minden rendelés tartalmaz egy azonosítót, egy dátumot, egy árat, illetve a rendelést leadó felhasználó azonosítóját.
 
@@ -138,7 +140,7 @@ Ez a tábla tartalmazza a rendeléseket. Egy rendeléshez \texttt{order\_meal}-e
 \hline
 \end{tabular}
 
-\Section{order\_meals}
+\SubSection{order\_meals}
 
 Ez a tábla a felhasználó által kosárba helyezett termékekről tartalmaz információkat. Egy \texttt{order\_meal} bejegyzés egy megrendelt termékről tárol adatokat. Minden bejegyzés tartalmaz rendelés azonosítót, ami megadja, hogy egy \texttt{order\_meal} melyik rendeléshez tartozik. Egy rendeléshez több \texttt{order\_meal} is tartozhat. Mindegyeik \texttt{order\_meal}-hez tartozik a rendelés azonosítón kívül egy azonosító, egy darabszám, egy ár, illetve egy termék azonosító.
 
@@ -162,7 +164,7 @@ Ez a tábla a felhasználó által kosárba helyezett termékekről tartalmaz in
     \hline
 \end{tabular}
 
-\Section{payments}
+\SubSection{payments}
 
 Ebben a táblában az éttermek által biztosított fizetési lehetőségeket tárolom. Minden bejegyzéséhez tartozik egy étterem azonosító, amivel meg lehet adni, hogy az adott fizetési lehetőségek melyik étteremhez tartoznak. Egy ilyen bejegyzés tartalmazza az imént említett étterem azonosítót, továbbá egy azonosítót, és különböző fizetési lehetőségeket, melyeknek az értéke 0, ha az adott étteremnél nem lehet ilyen módon fizetni, illetve 1 ha lehet.
 
@@ -188,11 +190,11 @@ Ebben a táblában az éttermek által biztosított fizetési lehetőségeket t�
     \hline
 \end{tabular}
 
-\Section{Back-End}
-
+\Section{Back-End logika megvalósítása}
+0
 A szerveroldalon egy többrétegű struktúrát hoztam létre. Ebben a fejezetben a két felső réteget, a Flask alkalmazást és a nyilvántartó csomagot fogom részletezni.
 
-\SubSection{Nyilvántartó csomag}
+% \SubSection{Nyilvántartó csomag}
 
 A nyilvántartó csomagban lévő metódusok végzik a lekérdezéseket, ezeket a metódusokat hívom meg a Flaskos rétegben. A nyilvántartó csomag egy absztrakciós szintet biztosít, elfedi az alsóbb rétegek technikai részleteit. A közbenső réteg bevezetésének számos előnye volt. Rövidebb és átláthatóbb lett a Flask fájl, mivel a lekérdezések, ellenőrzések és eredmények feldolgozása átkerült a nyilvántartó csomag függvényeibe. Így a Flask szinte csak a paraméterek lekérdezésével és a válaszok előállításával foglalkozik.
 
