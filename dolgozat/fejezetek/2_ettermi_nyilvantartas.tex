@@ -2,20 +2,24 @@
 
 Az éttermi nyilvántartás egy roppantul összetett problémakör. Az ilyen szoftverek tervezésénél figyelembe kell venni, hogy nincs két egyforma vendéglátó egység, tehát a szoftvert mindig az adott vállalkozáshoz kell igazítani. Nyilván kell tartani a rendeléseket, a raktárkészletet, a felhasználókat, törzsvendégek kezelését. A szoftverrel szemben elvárás, hogy megkönnyítse a szoftverrel dolgozók munkáját, átláthatóvá tegye az üzletvezetők számára az üzlet menetét és az ellenőrzést. Szintén elvárás, hogy könnyen kezelhető és rugalmasan bővíthető legyen.
 
-\Section{Rendelésnyilvántartás}
+\Section{Éttermi szoftverek feladatai}
+
+A következő szakaszokban azoknak a feladatoknak a bemutatására kerül sor, amelyeket egy éttermi szoftvernek szükséges lehet ellátnia.
+
+\SubSection{Rendelésnyilvántartás}
 
 Rendelések esetén számos adatot nyilván kell tartani. Fontos, hogy ki rendelt, mikor, melyik étteremből, mit, mennyit és mivel fizetett. Menedzselni kell a futárszolgálatot, betartani a kiszállítási időt. Biztosítani kell a vásárlók számára egy pontos leírást az ételekről, választási lehetőséget a fizetési lehetőségek között, estleg vegyes fizetési lehetőségeket egy számlán belül.
 
-\Section{Készletnyilvántartás}
+\SubSection{Készletnyilvántartás}
 
 Vannak éttermi nyilvántartó szoftverek, melyek lehetőséget biztosítanak teljes körű raktárkészlet kezelésre, egy vagy akár több raktárral is. Ebbe beletartozik az alapanyagok bevételezése, selejtezés, abban az esetben, ha több raktár is van, akkor raktárok közötti átvételezés.
 Ebbe a problémakörbe tartozhat még a menü összeállítása, előrendelések kezelése, a termékekhez tartozó receptúrák kezelése, tehát nyilvántartása és módosítása.
 
-\Section{Törzsvendégek kezelése}
+\SubSection{Törzsvendégek kezelése}
 
 A vásárlók teljeskörű nyilvántartása az ilyen típusú szoftverek esetén alap elvárás. A rendszeresen vásárló felhasználók számára nyújtani kell valamilyen fajta plusz szolgáltatást, amivel meg lehet hálálni a hűségüket, és el lehet azt érni, hogy továbbra is ezt a szoftvert használják. Erre a problémára nyújtanak megoldást a különböző törzsvásárlói kedvezmények.
 
-\Section{Ellenőrzés}
+\SubSection{Ellenőrzés}
 
 Egy sikeres vállalkozáshoz szükség van a folyamatos ellenőrzésre, az üzletvezetőnek mindig át kell látnia az üzlet menetét. Az ilyen típusú nyilvántartó rendszerek egy része lehetőséget biztosít a termékek szerinti fogyások kimutatására, ez egy nagyon fontos statisztika, amely megmutatja, hogy egy adott időszakban melyik termék volt a legnépszerűbb, tehát fogyott belőle a legtöbb, illetve, hogy melyikből fogyott a legkevesebb. Biztosítják az alapanyagok készletszintjének figyelését.
 
@@ -80,7 +84,7 @@ A magyar piacon jelenleg három online ételrendelési portál óriás van, a Ne
 
 Az alkalmazásom abban különbözik ezektől az online étrendelési portáloktól, hogy míg ezek a portálok úgymond csak közvetítő szerepet vállalnak, nem feltétlenül tartják nyilván az adatokat, a partner cégek egyébként is rendelkeznek egy saját étterem nyilvántartói rendszerrel és általában webes rendelő felülettel is. Addig az általam készített alkalmazás biztosítja a rendelésnyilvántartást, a vásárlónyilvántartást és a szerzett adatokból olyan statisztikákat, kimutatásokat állít elő, melyek elengedhetetlenek egy sikeres vállalkozáshoz.
 
-\Section{Ajánlórendszer}
+\Section{Ajánlórendszer funkció}
 
 Ajánlórendszerekkel nap mint nap találkozunk az interneten \cite{recommender_system}. Az ajánlórendszereknek köszönhetjük az online vásárlás közben nekünk ajánlott termékeket, videó nézés közben a videókat, melyek számunkra érdekesek lehetnek, vagy éppen böngészés közben olyan cikkek jelennek meg, melyek felkelthetik érdeklődésünket. Ezek rendszerek lényegében speciális információ szűrű rendszerek. Szükségük van a felhasználók adatbázisára, a termékek adatbázisára és a köztük lévő kapcsolatra. Az előbbi adatokból profilokat építenek tanuló algoritmusok segítségével. A kapott modellek alapján a rendszer már képes olyan tartalmat ajánlani, ami érdekes lehet a felhasználó számára.
 
@@ -100,19 +104,20 @@ Lehet osztályozni felhasznált információk alapján is. Ebbe a csoportba tart
 
 \newpage
 
-\SubSection{Ontológia}
+\SubSection{Ontológiák alkalmazása}
 
-Az ontológiák használata megoldást biztosít az alkalmazások számára, hogy fel tudják kutatni az adatbázisok belső jelentéseit \cite{owl}. Az adatbázisokban az egyes fogalmak más-más jelentéssel bírhatnak. Egy olyan programnak, amely információt használ fel ezekből az adatbázisokból, tudnia kell, hogy az általa alkalmazott fogalmak ugyanazt a dolgot jelentik.
+Az ajánlórendszer alapvetően úgy működik, hogy megpróbálja feltérképezni a felhasználó szokásait, és próbál az addig preferált esetekhez közeli találatokat felsorolni. Minden rendelést egy-egy objektumnak tekinthetünk, amelyhez tartoznak attribútumok. A közös attribútumok alapján kialakíthatunk olyan fogalomhálókat, amelyekben már értelmezhetünk távolságokat, így az ajánlórendszer ennek segítségével valóban tud majd keresni a közeli objektumok között.
 
-Az ontológia a fogalomalkotás vagy fogalomfeltérképezés specifikációját, azaz a körülírását, megkülönböztetését jelenti. Az ontológia egy formális és explicit leírása egy elosztott elképzelésnek. 
+Az ontológiák használata megoldást biztosít az alkalmazások számára, hogy egy egységes erőforrás leíró nyelvezetet használjanak az adatok megadásához \cite{owl}. Az adatbázisokban az egyes fogalmak más-más jelentéssel bírhatnak. Egy olyan programnak, amely információt használ fel ezekből az adatbázisokból, tudnia kell, hogy az általa alkalmazott fogalmak ugyanazt a dolgot jelentik. Ezt a fajta jelentésbeli egységet az OWL segít megteremteni.
+
+% Az ontológia a fogalomalkotás vagy fogalomfeltérképezés specifikációját, azaz a körülírását, megkülönböztetését jelenti. Az ontológia egy formális és explicit leírása egy elosztott elképzelésnek. 
 
 A mesterséges intelligencia területén ontológiákat a tudás megosztása és újbóli felhasználása céljából hoznak létre. A tudás átadása úgy történik, hogy különböző tulajdonságokat rendelünk az egyes osztályokhoz, és lehetővé tesszük, hogy a leszármazottjaik örököljék ezeket a tulajdonságokat.
 
-Az ontológiák egyik legismertebb változata a pizza ontológia, amit a Manchesteri Egyetemen fejlesztettek ki tanulmányi célokból. Ez egy egyszerű, könnyen értelmezhető ontóliga. Nagy mennyiségű relációt ki lehet fejezni a pizzákhoz rendelt feltét tulajdonságok alapján.
+Az ontológiák vizsgálata kapcsán gyakran a pizza ontológiát hozzák fel példának, amely így az ajánlórendszerek és a témaválasztás irányából is kapcsolódik a tárgykörhöz. Ezt a Manchesteri Egyetemen fejlesztettek ki tanulmányi célokból. Ez egy egyszerű, könnyen értelmezhető ontóliga. Nagy mennyiségű relációt ki lehet fejezni a pizzákhoz rendelt feltét tulajdonságok alapján.
 
-A pizza ontológia segítségével meg lehetne valósítani egy ajánlórendszert az alkalmazásomban. A megvalósításhoz az adatbázis minimális bővítésére lenne szükség, a rendelésekből kinyert adatok, felhasználói szokások segítségével könnyen és hatékonyan meg lehetne valósítani.
+Az alkalmazás jelenlegi változata tartalmazza a szükséges alapelemeket az ajánlórendszer későbbi hozzáadásához, viszont annak az implementációja csak a későbbi fejlesztési lehetőségek között szerepel. A pizza ontológia segítségével meg lehetne valósítani egy ajánlórendszert az alkalmazásomban. A megvalósításhoz az adatbázis minimális bővítésére lenne szükség, a rendelésekből kinyert adatok, felhasználói szokások segítségével könnyen és hatékonyan meg lehetne valósítani.
 
-Az ajánlórendszer működése a pizza ontológián alapulna, amit OWL segítségével tudnék definiálni és példányosítani. Az OWL, azaz Web Ontology Language, megkönnyíti a webes tartalmak értelmezését kiegészítő szókincs használatával és formális jelentéstannal. Minden egyes pizza egy ős pizzából származik, a feltétek széles körében lehet válogatni. Minél több azonos feltét van két különböző pizzán, annál nagyobb valószínűséggel fogja őket ajánlani a felhasználóknak. Amennyiben a felhasználó olyan pizzákat rendel, melyeken hús alapú feltét is szerepel, a rendszer nem fog vegetáriánus pizzát ajánlani neki.
+Az ajánlórendszer működése a pizza ontológián alapulna, amit OWL segítségével tudnék definiálni és példányosítani. Az OWL, azaz \textit{Web Ontology Language}, megkönnyíti a webes tartalmak értelmezését kiegészítő szókincs használatával és formális jelentéstannal. Minden egyes pizza egy ős pizzából származik, a feltétek széles körében lehet válogatni. Minél több azonos feltét van két különböző pizzán, annál nagyobb valószínűséggel fogja őket ajánlani a felhasználóknak. Amennyiben a felhasználó olyan pizzákat rendel, melyeken hús alapú feltét is szerepel, a rendszer nem fog vegetáriánus pizzát ajánlani neki.
 
 A fentiekben leírt ajánlórendszer megvalósítása lesz az első lépés az alkalmazásom továbbfejlesztésében. 
-
